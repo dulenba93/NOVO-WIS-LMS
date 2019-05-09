@@ -5,15 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
 @Entity
 @Where(clause = "deleted = 'false'")
+@Table(name = "users")
 public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 	
 	@Column(length=64, nullable = false)
@@ -27,6 +32,13 @@ public class Users {
 	
 	@Column(length=64, nullable = false)
 	private String role;
+	
+
+	@NotNull
+	private Boolean deleted = false;
+	
+	@Version
+	private int version = 0;
 	
 	
 	

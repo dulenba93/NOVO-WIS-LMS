@@ -24,6 +24,10 @@ public class UsersService {
 		return usersRepo.findById(id);
 	}
 	
+	public Optional<Users> getUserByUsernameAndPassword(String user, String pass){
+		return usersRepo.findByUsernameAndPassword(user, pass);
+	}
+	
 	public void addUser(Users user) {
 		usersRepo.save(user);
 	}
