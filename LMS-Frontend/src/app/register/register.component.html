@@ -1,46 +1,77 @@
-<mat-card class="example-card">
+<mat-card class="home-content">
   <mat-card-header>
-    <mat-card-title class="label-register">Register</mat-card-title>
+    <mat-card-title class="label-register">Register a New User</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="example-form" #f= "ngForm" (ngSubmit)="addNewUser()">
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="input-login">
-              <input matInput placeholder="Username" name="username" [(ngModel)] = "user.username" required/>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="input-login">
-              <input matInput placeholder="Password"  type="password" name="password" [(ngModel)] = "user.password" required/>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="input-login">
-              <input matInput placeholder="Email"   type="email" name="email" [(ngModel)] = "user.email"  required/>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-radio-group name="role" [(ngModel)] = "user.role" #role="ngModel">
-              <mat-radio-button value="student">Student</mat-radio-button>
-              <mat-radio-button value="teacher">Teacher</mat-radio-button>
-              <mat-radio-button value="admin">Administrator</mat-radio-button>
+    <form class="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+      <mat-grid-list cols="2" rowHeight="95%">
+        <mat-grid-tile>
+          <table cellspacing="1">
+            <tr>
+              <td>
+                <mat-form-field class="register-input">
+                  <input matInput placeholder="Username" formControlName="username" name="username" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="register-input">
+                  <input matInput placeholder="Password" formControlName="password" type="password" name="password"
+                    required [type]="hide ? 'password' : 'text'">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="register-input">
+                  <input matInput placeholder="Re-enter password" formControlName="re_password" type="password"
+                    name="password" required [type]="hide ? 'password' : 'text'">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="register-input">
+                  <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="register-input">
+                  <input matInput placeholder="Re-enter Email" formControlName="re_email" type="email" name="email"
+                    required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="user-type-container">
+            <h2 class="type-user-title">Type of User</h2>
+            <mat-radio-group formControlName="role">
+              <mat-grid-list cols="2" rowHeight="100%">
+                <mat-grid-tile>
+                  <label>
+                    <img src="../../assets/images/student.png" alt="student" class="user-type-image">
+                    <mat-radio-button value="student">Student</mat-radio-button>
+                  </label>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <label>
+                    <img src="../../assets/images/teacher.png" alt="professor" class="user-type-image">
+                    <mat-radio-button value="professor">Professor</mat-radio-button>
+                  </label>
+                </mat-grid-tile>
+              </mat-grid-list>
             </mat-radio-group>
-          
-          </td>
-        </tr>
-        <br>
-        <br/>
-
-      </table>
-      <button mat-raised-button type="submit" color="primary" class="register-btn">Register</button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid" class="register-btn">Register</button>
     </form>
   </mat-card-content>
 </mat-card>

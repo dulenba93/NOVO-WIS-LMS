@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Article } from '../article';
+import { Article } from '../model/article';
 import { NEWS } from '../mock-news';
 
 @Component({

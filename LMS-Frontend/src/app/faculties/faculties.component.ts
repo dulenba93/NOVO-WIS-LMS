@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Faculty } from '../faculty';
-import { FacultyService } from '../faculty.service';
+import { Faculty } from '../model/faculty';
+import { FacultyService } from '../faculty-service/faculty.service';
 
 // import {Map}  from 'ol/Map';
 // import {View} from 'ol/View';
@@ -34,9 +34,9 @@ export class FacultiesComponent implements OnInit {
     private facultyService: FacultyService
   ) { }
 
-  ngAfterViewInit() {
-    this.map.setTarget(this.mapElement.nativeElement);
-  }
+  // ngAfterViewInit() {
+  //   this.map.setTarget(this.mapElement.nativeElement);
+  // }
 
   ngOnInit() {
     // this.map = new Map({

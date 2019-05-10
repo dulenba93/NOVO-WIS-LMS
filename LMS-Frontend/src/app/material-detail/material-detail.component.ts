@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Subject } from '../subject';
+import { Subject } from '../model/subject';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 
 import { ActivatedRoute } from '@angular/router';
-import { SubjectService } from '../subject.service';
+import { SubjectService } from '../subject-service/subject.service';
 import { TREE_DATA } from '../util/material-tree-data';
 
 interface MaterialNode{

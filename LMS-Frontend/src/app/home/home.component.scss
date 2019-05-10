@@ -1,13 +1,50 @@
+//media queries for wider screens 2560 * 1080p
+$my-desktop: 2560px;
+$school-desktop: 1920px;
+$smaller-height: 700px;
+$smaller-screen: 1750px;
+
+
+@media only screen and (max-width : $my-desktop){
+  .mat-tab-group {
+    height: 80%;
+  }
+}
+
+@media only screen and (max-width : $school-desktop){
+  .mat-tab-group {
+    height: 77%;
+  }
+}
+
+@media only screen and (max-width : $school-desktop){
+  .mat-tab-group {
+    height: 74%;
+  }
+}
+
+@media only screen and (max-height : $smaller-height){
+  .mat-tab-group {
+    height: 70%;
+  }
+}
+
+
 .home-content {
-  margin-top: 80px;
-  margin-left: 150px;
-  margin-bottom: 80px;
-  margin-right: 130px;
+  margin: 5% 5% 5% 5%;
   position: absolute;
   width: 85%;
   height: 75%;
+  padding-bottom: 0px;
   top: 0;
   left: 0;
+  -webkit-box-shadow: 2px 10px 18px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 10px 18px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 10px 18px 0px rgba(0, 0, 0, 0.75);
+}
+
+.mat-header {
+  position: relative;
 }
 
 .forum-container-title {
@@ -25,34 +62,33 @@
 
 .content-window {
   width: 100%;
-  height: 60%;
-}
-
-.mat-tab-body{
-  height: 70%;
-}
-
-div.mat-tab-body-wrapper{
   height: 100%;
 }
 
-
-
-mat-tab-group.mat-tab-group{
-  height: 83%;
+.mat-tab-body {
+  height: 70%;
 }
 
-mat-card-content.content-window{
+.mat-tab-body-wrapper {
+  height: 100%;
+}
+
+mat-tab-group {
+  position: relative;
+  height: 80%;
+}
+
+mat-card-content.content-window {
   height: 100%;
   margin: 0;
 }
 
-mat-list.mat-list{
-  padding: 0px;
+mat-list.mat-list {
+  padding: 0%;
   height: 100%;
 }
 
-mat-list-item.mat-list-item{
+mat-list-item.mat-list-item {
   height: 80px;
   width: 100%;
   justify-content: left;
@@ -60,7 +96,7 @@ mat-list-item.mat-list-item{
   margin-bottom: 15px;
 }
 
-a.articleItem{
+a.articleItem {
   height: relative;
   width: 100%;
   color: black;
@@ -68,7 +104,7 @@ a.articleItem{
   font-family: title;
 }
 
-a.articleItem:hover{
+a.articleItem:hover {
   background-color: #f6eff9;
   cursor: pointer;
   -webkit-transition: background-color 0.5s ease-out;
@@ -77,12 +113,11 @@ a.articleItem:hover{
   transition: background-color 0.5s ease-out;
 }
 
-div.news-container{
+div.news-container {
   width: relative;
-  height: 80px;
 }
 
-h3.article-title{
+h3.article-title {
   font-size: 20px;
   margin-top: 0px;
 }

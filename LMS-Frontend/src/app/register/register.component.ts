@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user'
+import { User } from '../model/user'
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { AdminService } from '../admin-service/admin.service';
-import { HttpClient } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-register',
@@ -12,27 +10,35 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
 
-  user = new User();  
-
+  public user: User = new User();
+  hide = true;
+  
   registerForm: FormGroup;
 
-  constructor(private adminService:AdminService ) { }
+  constructor(
+    private adminService: AdminService,
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
 
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      re_password: ['', Validators.required],
+      re_email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required, Validators.email],
+      role: ['', Validators.required]
+    });
   }
 
-  addNewUser() {
-
-    this.adminService.addNewUser(this.user).subscribe(
-      res=>{
-        location.reload();
-      },
-      err =>{
-        alert("desila se neka greska");
-      }
-
-    );
+  onSubmit(){
+    const user = this.registerForm.value;
+    delete user['re_password'];
+    delete user['re_email'];
+    this.user = user;
+    this.adminService.addNewUser(this.user).subscribe();
+    alert("You have created a user")
   }
 
 }

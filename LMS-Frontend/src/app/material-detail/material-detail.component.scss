@@ -5,6 +5,9 @@
   height: 65%;
   top: 20%;
   left: 30%;
+  -webkit-box-shadow: 2px 10px 18px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 10px 18px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 10px 18px 0px rgba(0, 0, 0, 0.75);
 }
 
 .forum-container-title {
@@ -17,28 +20,29 @@
   border-bottom: 2px solid currentColor;
 }
 
-.worker-label{
+.worker-label {
   margin: 10px;
   font-family: title;
 }
 
-.mat-card-content>:first-child, .mat-card>:first-child{
+.mat-card-content > :first-child,
+.mat-card > :first-child {
   margin-top: 10px;
 }
 
-.subject-desc{
-  margin-left:10px;
+.subject-desc {
+  margin-left: 10px;
 }
 
-.subject-menu-label{
-  margin-bottom:0px;
+.subject-menu-label {
+  margin-bottom: 0px;
   font-family: title;
   font-size: 18px;
   text-decoration: underline;
 }
 
-.shortcut-box{
-  margin-left:10px;
+.shortcut-box {
+  margin-left: 10px;
 }
 
 .example-tree-invisible {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from '../subject';
-import { SubjectService } from '../subject.service';
+import { Subject } from '../model/subject';
+import { SubjectService } from '../subject-service/subject.service';
 
 @Component({
   selector: 'app-materials-page',

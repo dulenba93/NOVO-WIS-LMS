@@ -1,4 +1,4 @@
-import { Article } from './article';
+import { Article } from './model/article';
 
 export const NEWS: Article[] = [
     {id: 1, img: '../assets/images/formal', title:"Change of Opening Semester", content:"lorem ipsum i sve ostalo"},
