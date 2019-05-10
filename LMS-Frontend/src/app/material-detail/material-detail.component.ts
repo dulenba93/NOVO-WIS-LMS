@@ -4,7 +4,7 @@ import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 
 import { ActivatedRoute } from '@angular/router';
-import { SubjectService } from '../subject-service/subject.service';
+import { SubjectService } from '../services/subject-service/subject.service'
 import { TREE_DATA } from '../util/material-tree-data';
 
 interface MaterialNode{

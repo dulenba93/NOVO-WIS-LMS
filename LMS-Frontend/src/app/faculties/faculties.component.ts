@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Faculty } from '../model/faculty';
-import { FacultyService } from '../faculty-service/faculty.service';
+import { FacultyService } from '../services/faculty-service/faculty.service';
 
 // import {Map}  from 'ol/Map';
 // import {View} from 'ol/View';

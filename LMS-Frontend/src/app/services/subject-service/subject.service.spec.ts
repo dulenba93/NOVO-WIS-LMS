@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NavItemService } from './nav-item.service';
+import { SubjectService } from './subject.service';
 
-describe('NavItemService', () => {
+describe('SubjectService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NavItemService = TestBed.get(NavItemService);
+    const service: SubjectService = TestBed.get(SubjectService);
     expect(service).toBeTruthy();
   });
 });
