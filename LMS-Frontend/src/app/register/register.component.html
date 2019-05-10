@@ -11,6 +11,9 @@
               <td>
                 <mat-form-field class="register-input">
                   <input matInput placeholder="Username" formControlName="username" name="username" required>
+                  <mat-error
+                    *ngIf="registerForm.controls.username.hasError('required') && registerForm.controls.username.touched && !registerForm.submitted">
+                    You must enter a value</mat-error>
                 </mat-form-field>
               </td>
             </tr>
@@ -19,6 +22,9 @@
                 <mat-form-field class="register-input">
                   <input matInput placeholder="Password" formControlName="password" type="password" name="password"
                     required [type]="hide ? 'password' : 'text'">
+                  <mat-error
+                    *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.touched && !registerForm.submitted">
+                    You must enter a value</mat-error>
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
               </td>
@@ -26,8 +32,14 @@
             <tr>
               <td>
                 <mat-form-field class="register-input">
-                  <input matInput placeholder="Re-enter password" formControlName="re_password" type="password"
-                    name="password" required [type]="hide ? 'password' : 'text'">
+                  <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password"
+                    name="password" required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
+                  <mat-error
+                    *ngIf="registerForm.controls.confirmPassword.hasError('required') && registerForm.controls.confirmPassword.touched && !registerForm.submitted">
+                    You must enter a value</mat-error>
+                  <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('notSame')">
+                    Passwords do not match
+                  </mat-error>
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
               </td>
@@ -36,14 +48,12 @@
               <td>
                 <mat-form-field class="register-input">
                   <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="register-input">
-                  <input matInput placeholder="Re-enter Email" formControlName="re_email" type="email" name="email"
-                    required>
+                  <mat-error
+                    *ngIf="registerForm.controls.email.hasError('required') && registerForm.controls.email.touched && !registerForm.submitted">
+                    You must enter a value</mat-error>
+                  <mat-error
+                    *ngIf="registerForm.controls.email.hasError('email') && registerForm.controls.email.touched && !registerForm.submitted">
+                    You must enter a valid email</mat-error>
                 </mat-form-field>
               </td>
             </tr>
@@ -66,12 +76,19 @@
                     <mat-radio-button value="professor">Professor</mat-radio-button>
                   </label>
                 </mat-grid-tile>
+                <mat-grid-tile>
+                  <label>
+                    <img src="../../assets/images/boss.png" alt="boss" class="user-type-image">
+                    <mat-radio-button value="sub-admin">Sub-Admin</mat-radio-button>
+                  </label>
+                </mat-grid-tile>
               </mat-grid-list>
             </mat-radio-group>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
-      <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid" class="register-btn">Register</button>
+      <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid"
+        class="register-btn">Register</button>
     </form>
   </mat-card-content>
 </mat-card>

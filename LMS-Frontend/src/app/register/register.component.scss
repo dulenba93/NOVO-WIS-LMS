@@ -36,6 +36,10 @@ mat-grid-tile{
   height: 100% !important;
 }
 
+mat-grid-list{
+  height: 95% !important;
+}
+
 mat-radio-button{
   font-family: title;
   font-size: 18px;
@@ -56,6 +60,9 @@ label{
   width: 100%;
 }
 
+.role-tile{
+  height: 60%;
+}
 .user-type-image{
   width: 150px;
   height: 150px;

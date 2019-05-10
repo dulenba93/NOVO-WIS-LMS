@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user'
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormControl, FormBuilder, Validators, FormGroupDirective, NgForm } from '@angular/forms'
 import { AdminService } from '../services/admin-service/admin.service';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -9,36 +19,42 @@ import { AdminService } from '../services/admin-service/admin.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
-  public user: User = new User();
+  user: User = new User();
   hide = true;
-  
+
   registerForm: FormGroup;
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private adminService: AdminService,
-    private formBuilder: FormBuilder,
-  ) { }
-
-  ngOnInit() {
-
-    this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      re_password: ['', Validators.required],
-      re_email: ['', Validators.required, Validators.email],
-      email: ['', Validators.required, Validators.email],
-      role: ['', Validators.required]
-    });
+    private fb: FormBuilder
+  ) {
   }
 
-  onSubmit(){
+  ngOnInit() {
+    this.registerForm = this.fb.group({
+      username: [null, Validators.required],
+      password: [null, Validators.required],
+      confirmPassword: [''],
+      email: [null, [Validators.required, Validators.email]],
+      role: [null, Validators.required]
+    }, { validator: this.checkPasswords });
+  }
+
+  onSubmit() {
     const user = this.registerForm.value;
     delete user['re_password'];
-    delete user['re_email'];
     this.user = user;
     this.adminService.addNewUser(this.user).subscribe();
     alert("You have created a user")
+  }
+
+  checkPasswords(group: FormGroup) {
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.confirmPassword.value;
+
+    return pass === confirmPass ? null : { notSame: true }
   }
 
 }
