@@ -1,0 +1,74 @@
+<mat-card class="home-content">
+
+    <mat-card-header>
+        <mat-card-title class="forum-container-title">All Users</mat-card-title>
+        
+    </mat-card-header>
+
+    <div class= "search-div">
+
+      <!-- dugme za kreiranje novog korisnika
+      <button mat-raised-button>
+        <mat-icon> Add</mat-icon>Create
+      </button>
+      -->
+      <mat-form-field class= "search-form-field" floatLabel = "never">
+        <input matInput [(ngModel)] = "searchKey" placeholder="search" autocomplete="off" (keyup) = "applayFilter()">
+        <button mat-button matSuffix mat-icon-button area-label="Clear" *ngIf="searchKey" (click) ="onSearchClear()" >
+          <mat-icon>close</mat-icon>
+        </button>
+
+      </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource] = "listData" matSort>
+
+          <ng-container  matColumnDef = "username">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+            <mat-cell *matCellDef = "let element">{{element.username}}</mat-cell>
+          </ng-container>
+
+          <ng-container  matColumnDef = "email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header >Email</mat-header-cell>
+              <mat-cell *matCellDef = "let element">{{element.email}}</mat-cell>
+          </ng-container>
+          <ng-container  matColumnDef = "role">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+              <mat-cell *matCellDef = "let element">{{element.role}}</mat-cell>
+          </ng-container>
+
+          <ng-container  matColumnDef = "edit">
+              <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+              <mat-cell *matCellDef = "let row">
+                <button mat-data-button> <mat-icon>launch</mat-icon></button>
+              </mat-cell>
+          </ng-container>
+
+          
+          <ng-container  matColumnDef = "delete">
+              <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+              <mat-cell *matCellDef = "let row">
+                <button mat-data-button> <mat-icon>delete_outline</mat-icon></button>
+              </mat-cell>
+          </ng-container>
+
+          <ng-container  matColumnDef = "loading">
+              <mat-footer-cell *matHeaderCellDef>
+                Loading data...
+              </mat-footer-cell>
+          </ng-container>
+
+
+       
+          <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+          <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+          
+      </mat-table>
+      <mat-paginator [pageSizeOptions] = "[5,10,25,100]" [pageSize] ="10" ></mat-paginator>
+    </div>
+
+
+      
+
+</mat-card>

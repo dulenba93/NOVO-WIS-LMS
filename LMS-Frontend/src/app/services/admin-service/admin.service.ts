@@ -20,9 +20,12 @@ export class AdminService {
 
   addNewUser(user: User):Observable<any>{
 
-   return this.http.post(this.USER_URL, user);
- 
-   
+   return this.http.post(this.USER_URL, user);  
+  }
+
+  getAllUsers():Observable<User[]>{
+    
+    return this.http.get<User[]>(this.USER_URL);
   }
 
   
