@@ -51,6 +51,16 @@ public class UsersController {
 		return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
 	}
 	
+	@RequestMapping(value = "/findbyusername", method = RequestMethod.GET)
+	public ResponseEntity<Users> getUserByUsername(String user){
+		Optional<Users> u = usersService.getUserByUsername(user);
+		if(u.isPresent()) {
+			return new ResponseEntity<Users>(u.get(),HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
+	}
+	
     @RequestMapping(value="", method=RequestMethod.POST)
     public ResponseEntity<Users> addUser(@RequestBody Users user) {
         usersService.addUser(user);

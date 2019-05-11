@@ -22,17 +22,21 @@ export class RegisterComponent implements OnInit {
 
   }
 
+
+
   addNewUser() {
 
-    this.adminService.addNewUser(this.user).subscribe(
-      res=>{
-        location.reload();
-      },
-      err =>{
-        alert("desila se neka greska");
-      }
 
-    );
-  }
+      this.adminService.addNewUser(this.user).subscribe(
+        res=>{
+          location.reload();
+        },
+        err =>{
+          alert("desila se neka greska");
+        }
+
+      );
+    }
+  
 
 }
