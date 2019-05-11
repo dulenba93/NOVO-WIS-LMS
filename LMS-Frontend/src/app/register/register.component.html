@@ -25,6 +25,9 @@
                   <mat-error
                     *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.touched && !registerForm.submitted">
                     You must enter a value</mat-error>
+                  <mat-error
+                    *ngIf="registerForm.controls.password.hasError('minLength') && registerForm.controls.password.touched && !registerForm.submitted">
+                    Password must contain more than 8 characters</mat-error>
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
               </td>
@@ -37,9 +40,9 @@
                   <mat-error
                     *ngIf="registerForm.controls.confirmPassword.hasError('required') && registerForm.controls.confirmPassword.touched && !registerForm.submitted">
                     You must enter a value</mat-error>
-                  <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('notSame')">
+                  <!-- <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('notSame')">
                     Passwords do not match
-                  </mat-error>
+                  </mat-error> -->
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </mat-form-field>
               </td>
