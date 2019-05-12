@@ -23,12 +23,15 @@ export class AdminService {
    return this.http.post(this.USER_URL, user);
   }
 
+  getAllUsers(): Observable<any>{
+    return this.http.get(this.USER_URL);
+  }
+
   checkUser(user: User): Observable<any>{
     return this.http.post(this.CHECK_USER_URL, user);
   }
 
   deleteUser(id:String){
-
     return this.http.delete(this.USER_URL + `/${id}`);
   }
   

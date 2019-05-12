@@ -62,7 +62,7 @@ export class AllUsersComponent implements OnInit {
     this.searchKey = "";
   }
 
-  applayFilter(){
+  applyFilter(){
     this.listData.filter = this.searchKey.trim().toLowerCase();    
   }
 

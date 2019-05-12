@@ -67,19 +67,19 @@
             <h2 class="type-user-title">Type of User</h2>
             <mat-radio-group formControlName="role">
               <mat-grid-list cols="2" rowHeight="100%">
-                <mat-grid-tile>
+                <mat-grid-tile [rowspan] = 1 [colspan] = 1 class="role-tile">
                   <label>
                     <img src="../../assets/images/student.png" alt="student" class="user-type-image">
                     <mat-radio-button value="student">Student</mat-radio-button>
                   </label>
                 </mat-grid-tile>
-                <mat-grid-tile>
+                <mat-grid-tile [rowspan] = 1 [colspan] = 1 class="role-tile">
                   <label>
                     <img src="../../assets/images/teacher.png" alt="professor" class="user-type-image">
                     <mat-radio-button value="professor">Professor</mat-radio-button>
                   </label>
                 </mat-grid-tile>
-                <mat-grid-tile>
+                <mat-grid-tile [rowspan] = 1 [colspan] = 1 class="role-tile">
                   <label>
                     <img src="../../assets/images/boss.png" alt="boss" class="user-type-image">
                     <mat-radio-button value="sub-admin">Sub-Admin</mat-radio-button>
