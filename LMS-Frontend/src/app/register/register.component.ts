@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
     delete user['re_password'];
     this.user = user;
     this.adminService.addNewUser(this.user).subscribe();
-    alert("You have created a user")
   }
 
   checkPasswords(group: FormGroup) { 
