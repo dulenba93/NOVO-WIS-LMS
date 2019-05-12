@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/services/admin-service/admin.service';
-import {MatTableDataSource,MatSort, MatPaginator} from '@angular/material'
+import {MatTableDataSource,MatSort, MatPaginator,MatDialog,MatDialogConfig} from '@angular/material'
 import { User } from 'src/app/model/user';
+import { RegisterComponent } from 'src/app/register/register.component';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { User } from 'src/app/model/user';
 })
 export class AllUsersComponent implements OnInit {
 
-  constructor(private service: AdminService) { }
+  constructor(private service: AdminService,
+              private dialog: MatDialog) { }
 
 
   users: User[] = [];
@@ -64,6 +66,16 @@ export class AllUsersComponent implements OnInit {
     this.listData.filter = this.searchKey.trim().toLowerCase();    
   }
 
-  
+  onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    this.dialog.open(RegisterComponent,dialogConfig);
+  }
+
+  onDelete(id: String){
+    this.service.deleteUser(id).subscribe((data: any) => {
+      this.getAllUsers();
+    });
+  }
 
 }

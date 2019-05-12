@@ -28,5 +28,9 @@ export class AdminService {
     return this.http.get<User[]>(this.USER_URL);
   }
 
+  deleteUser(id:String){
+
+    return this.http.delete(this.USER_URL + `/${id}`);
+  }
   
 }

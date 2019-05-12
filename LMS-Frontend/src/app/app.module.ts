@@ -44,6 +44,7 @@ import { AllUsersComponent } from './admin-panel/all-users/all-users.component';
     FlexLayoutModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[RegisterComponent]
 })
 export class AppModule { }

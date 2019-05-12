@@ -3,6 +3,7 @@ import { User } from '../model/user'
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms'
 import { AdminService } from '../services/admin-service/admin.service';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialogRef,MatSnackBarModule, MatSnackBar } from '@angular/material';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,11 +25,14 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
+
   matcher = new MyErrorStateMatcher();
 
   constructor(
     private adminService: AdminService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<RegisterComponent>,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -48,7 +52,9 @@ export class RegisterComponent implements OnInit {
     delete user['re_password'];
     this.user = user;
     this.adminService.addNewUser(this.user).subscribe();
-    alert("You have created a user")
+    //zatvara se popUp dialog u allusers komponenti
+    this.dialogRef.close();
+    this.openSnackBar("You successfully add user!","Close");
   }
 
   checkPasswords(group: FormGroup) { 
@@ -58,5 +64,12 @@ export class RegisterComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
 
 }
+
+

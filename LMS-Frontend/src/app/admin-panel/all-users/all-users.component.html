@@ -7,11 +7,11 @@
 
     <div class= "search-div">
 
-      <!-- dugme za kreiranje novog korisnika
-      <button mat-raised-button>
+     
+      <button mat-raised-button (click) = "onCreate()">
         <mat-icon> Add</mat-icon>Create
       </button>
-      -->
+  
       <mat-form-field class= "search-form-field" floatLabel = "never">
         <input matInput [(ngModel)] = "searchKey" placeholder="search" autocomplete="off" (keyup) = "applayFilter()">
         <button mat-button matSuffix mat-icon-button area-label="Clear" *ngIf="searchKey" (click) ="onSearchClear()" >
@@ -41,15 +41,15 @@
           <ng-container  matColumnDef = "edit">
               <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
               <mat-cell *matCellDef = "let row">
-                <button mat-data-button> <mat-icon>launch</mat-icon></button>
+                <button mat-data-button (click) = "onEdit(row)"> <mat-icon>launch</mat-icon></button>
               </mat-cell>
           </ng-container>
 
           
           <ng-container  matColumnDef = "delete">
               <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
-              <mat-cell *matCellDef = "let row">
-                <button mat-data-button> <mat-icon>delete_outline</mat-icon></button>
+              <mat-cell *matCellDef = "let element">
+                <button mat-data-button (click) = "onDelete(element.id)"> <mat-icon>delete_outline</mat-icon></button>
               </mat-cell>
           </ng-container>
 
