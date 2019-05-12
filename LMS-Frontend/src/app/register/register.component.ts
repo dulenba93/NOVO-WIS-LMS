@@ -3,7 +3,8 @@ import { User } from '../model/user'
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms'
 import { AdminService } from '../services/admin-service/admin.service';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatDialogRef,MatSnackBarModule, MatSnackBar } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

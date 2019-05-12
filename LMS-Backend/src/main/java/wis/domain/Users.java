@@ -32,15 +32,12 @@ public class Users {
 	
 	@Column(length=64, nullable = false)
 	private String role;
-	
 
 	@NotNull
 	private Boolean deleted = false;
 	
 	@Version
 	private int version = 0;
-	
-	
 	
 	public Users() {}
 
