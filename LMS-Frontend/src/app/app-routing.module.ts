@@ -7,7 +7,6 @@ import { MaterialsPageComponent } from './materials-page/materials-page.componen
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { FacultiesComponent } from './faculties/faculties.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AllUsersComponent} from './admin-panel/all-users/all-users.component';
  
 
 const routes: Routes = [
@@ -18,8 +17,7 @@ const routes: Routes = [
   { path: 'materials', component: MaterialsPageComponent, data: { animation: { value: 'MaterialsPage' }} },
   { path: 'materials/subject/:id', component: MaterialDetailComponent, data: { animation: { value: 'MaterialDetailPage' }} },
   { path: 'faculties', component: FacultiesComponent, data: { animation: { value: 'MaterialDetailPage' }} },
-  { path: 'admin-panel', component: AdminPanelComponent, data: { animation: { value: 'AdminPanelPage' }} },
-  { path: 'admin-panel/all-users', component:AllUsersComponent, data: {animation : {value:'AllUsersPage'}}}
+  { path: 'admin-panel', component: AdminPanelComponent, data: { animation: { value: 'AdminPanelPage' }} }
 ];
 
 @NgModule({

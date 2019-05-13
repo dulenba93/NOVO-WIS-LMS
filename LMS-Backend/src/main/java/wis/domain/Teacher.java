@@ -4,11 +4,13 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,12 +27,28 @@ public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 64)
+	private String firstName;
+
+	@Column(length = 64)
+	private String lastName;
+	
+	@Column(length=64, nullable = false)
+	private String username;
+
+	@Column(length=64, nullable = false)
+	private String password;
+
+	@Column(length=64, nullable = false)
+	private String email;
+	
+	@OneToOne
+	@JoinColumn(name="addressId")
+	private Address address;
 
 	@Size(max = 20)
 	private String personalIdentificationNumber;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Users user;
 
 	@NotNull
 	private Boolean deleted = false;
@@ -41,9 +59,6 @@ public class Teacher {
 	//proveriti ovo
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Title> title;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Address address;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	private Faculty facultyDekan;

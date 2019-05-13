@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
@@ -22,8 +23,24 @@ public class Administration {
 	@Column(length = 64)
 	private String personalIdentificationNumber;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Users user;
+	@Column(length = 64)
+	private String firstName;
+
+	@Column(length = 64)
+	private String lastName;
+	
+	@Column(length=64, nullable = false)
+	private String username;
+
+	@Column(length=64, nullable = false)
+	private String password;
+
+	@Column(length=64, nullable = false)
+	private String email;
+	
+	@OneToOne
+	@JoinColumn(name="addressId")
+	private Address address;
 	
 	public Long getId() {
 		return id;

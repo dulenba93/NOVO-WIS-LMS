@@ -1,11 +1,12 @@
 package wis.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Where;
@@ -18,8 +19,24 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Users user;
+	@Column(length = 64)
+	private String firstName;
+
+	@Column(length = 64)
+	private String lastName;
+	
+	@Column(length=64, nullable = false)
+	private String username;
+
+	@Column(length=64, nullable = false)
+	private String password;
+
+	@Column(length=64, nullable = false)
+	private String email;
+	
+	@OneToOne
+	@JoinColumn(name="addressId")
+	private Address address;
 	
 	//ovo je polje za info o aminu
 	private String note;

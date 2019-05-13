@@ -17,7 +17,6 @@ import { MaterialsPageComponent } from './materials-page/materials-page.componen
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { FacultiesComponent } from './faculties/faculties.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AllUsersComponent } from './admin-panel/all-users/all-users.component';
 
 @NgModule({
   exports: [
@@ -33,7 +32,6 @@ import { AllUsersComponent } from './admin-panel/all-users/all-users.component';
     MaterialDetailComponent,
     FacultiesComponent,
     AdminPanelComponent,
-    AllUsersComponent
   ],
   imports: [
     BrowserModule,
