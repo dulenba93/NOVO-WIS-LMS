@@ -11,7 +11,6 @@ import wis.domain.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>{
 	
-	List<Student> findByFirstNameLike(String firstName);
 	List<Student> findByCourseAttendingsCourseRealizationCourseTitle(String courseTitle);
 	Student findFirstByCardNumber(String cardNumber);
 	

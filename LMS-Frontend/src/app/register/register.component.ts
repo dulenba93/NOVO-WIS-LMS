@@ -24,8 +24,11 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
   hide = true;
 
-  registerForm: FormGroup;
+  roles: string[] = ['Student', 'Teacher', 'Sub-Admin'];
 
+  role: string = '';
+
+  registerForm: FormGroup;
 
   matcher = new MyErrorStateMatcher();
 
