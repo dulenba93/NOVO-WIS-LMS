@@ -7,17 +7,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Where;
 
 @Entity
 @Where(clause = "deleted = 'false'")
-public class Admin {
-
+public class Administration {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 64)
+	private String personalIdentificationNumber;
 	
 	@Column(length = 64)
 	private String firstName;
@@ -38,9 +42,6 @@ public class Admin {
 	@JoinColumn(name="addressId")
 	private Address address;
 	
-	//ovo je polje za info o aminu
-	private String note;
-	
 	public Long getId() {
 		return id;
 	}
@@ -49,16 +50,14 @@ public class Admin {
 		this.id = id;
 	}
 
-	public String getNote() {
-		return note;
+
+	public String getPersonalIdentificationNumber() {
+		return personalIdentificationNumber;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setPersonalIdentificationNumber(String personalIdentificationNumber) {
+		this.personalIdentificationNumber = personalIdentificationNumber;
 	}
 
-	public Admin() {}
-	
-	
-	
+	public Administration() {}
 }

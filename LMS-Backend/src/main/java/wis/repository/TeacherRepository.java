@@ -10,5 +10,4 @@ import wis.domain.Teacher;
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Long>, TeacherRepositoryCustom {
 
-	public List<Teacher> findByFirstName(String firstName);
 }

@@ -4,11 +4,14 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -24,13 +27,26 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Size(max = 50)
+	
+	@Column(length = 64)
 	private String firstName;
 
-	@Size(max = 50)
+	@Column(length = 64)
 	private String lastName;
+	
+	@Column(length=64, nullable = false)
+	private String username;
 
+	@Column(length=64, nullable = false)
+	private String password;
+
+	@Column(length=64, nullable = false)
+	private String email;
+	
+	@OneToOne
+	@JoinColumn(name="addressId")
+	private Address address;
+	
 	@Size(max = 10)
 	private String cardNumber;
 	
@@ -45,9 +61,6 @@ public class Student {
 	
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<StudentYear> studentYears;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Address address;
 	
 	public Set<StudentYear> getStudentYears() {
 		return studentYears;
@@ -79,22 +92,6 @@ public class Student {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getCardNumber() {

@@ -39,20 +39,6 @@ public class Address {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Place place;
 	
-	
-	@OneToOne(fetch = FetchType.LAZY)	
-	private University university;
-	
-	@OneToOne(fetch = FetchType.LAZY)	
-	private University teacher;
-	
-	@OneToOne(fetch = FetchType.LAZY)	
-	private University student;
-	
-	
-	@OneToOne(fetch = FetchType.LAZY)		
-	private Faculty faculty;
-	
 	public Address() {}
 	
 	public Address(Long id, String street, String number, Place place, University university ,Faculty faculty) {
@@ -60,8 +46,6 @@ public class Address {
 		this.street = street;
 		this.number = number;
 		this.place = place;
-		this.university = university;
-		this.faculty = faculty;
 	}
 	
 	
@@ -111,21 +95,6 @@ public class Address {
 
 	public void setPlace(Place place) {
 		this.place = place;
-	}
-
-	public University getUniversity() {
-		return university;
-	}
-
-	public void setUniversity(University university) {
-		this.university = university;
-	}
-	public Faculty getFaculty() {
-		return faculty;
-	}
-
-	public void setFaculty(Faculty faculty) {
-		this.faculty = faculty;
 	}
 	
 
