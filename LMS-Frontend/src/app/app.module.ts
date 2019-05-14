@@ -17,7 +17,6 @@ import { MaterialsPageComponent } from './materials-page/materials-page.componen
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { FacultiesComponent } from './faculties/faculties.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AllUsersComponent } from './admin-panel/all-users/all-users.component';
 import { UniversityComponent } from './admin-panel/university/university/university.component';
 import { AddUniversityComponent } from './admin-panel/university/add-university/add-university.component';
 
@@ -35,7 +34,6 @@ import { AddUniversityComponent } from './admin-panel/university/add-university/
     MaterialDetailComponent,
     FacultiesComponent,
     AdminPanelComponent,
-    AllUsersComponent,
     UniversityComponent,
     AddUniversityComponent
   ],
