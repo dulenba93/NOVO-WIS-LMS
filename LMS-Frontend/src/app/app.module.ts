@@ -19,6 +19,8 @@ import { FacultiesComponent } from './faculties/faculties.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { TeacherPanelComponent } from './teacher-panel/teacher-panel.component';
 import { StudentPanelComponent } from './student-panel/student-panel.component';
+import { UniversityComponent } from './admin-panel/university/university/university.component';
+import { AddUniversityComponent } from './admin-panel/university/add-university/add-university.component';
 
 @NgModule({
   exports: [
@@ -36,6 +38,8 @@ import { StudentPanelComponent } from './student-panel/student-panel.component';
     AdminPanelComponent,
     TeacherPanelComponent,
     StudentPanelComponent,
+    UniversityComponent,
+    AddUniversityComponent
   ],
   imports: [
     BrowserModule,
