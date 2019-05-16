@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,45 +19,24 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Where(clause = "deleted = 'false'")
 public class Place {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Size(max = 50)
+	@Column(length = 50, nullable = false)
 	private String name;
 	
-	@Version
-	private int version = 0;
 	
-	@NotNull
-	private Boolean deleted = false;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Country country;
-	
-	
-	@OneToMany(mappedBy = "place", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<Address> address;
 	
 	public Place() {}
 	
-	public Place(Long id, String name, Country country, Set<Address> address) {
-		this.id = id;
+	public Place(String name, Country country) {
 		this.name = name;
 		this.country = country;
-		this.address = address;
-	}
-	
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -67,36 +47,12 @@ public class Place {
 		this.name = name;
 	}
 
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
 	public Country getCountry() {
 		return country;
 	}
 
 	public void setCountry(Country country) {
 		this.country = country;
-	}
-
-	public Set<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(Set<Address> address) {
-		this.address = address;
 	}
 
 

@@ -2,6 +2,8 @@ package wis.domain;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,10 +25,10 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Size(max = 50)
+	@Column(length=64, nullable = false)
 	private String street;
 
-	@Size(max = 50)
+	@Column(length=64, nullable = false)
 	private String number;
 
 	////
@@ -36,13 +38,12 @@ public class Address {
 	@Version
 	private int version = 0;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Place place;
 	
 	public Address() {}
 	
-	public Address(Long id, String street, String number, Place place, University university ,Faculty faculty) {
-		this.id = id;
+	public Address(String street, String number, Place place) {
 		this.street = street;
 		this.number = number;
 		this.place = place;

@@ -1,0 +1,45 @@
+<mat-card class="home-content">
+  <mat-card-header>
+    <mat-card-title class="forum-container-title">Student Panel</mat-card-title>
+    <mat-card-subtitle class="forum-container-subtitle">Choose student options</mat-card-subtitle>
+    <h2 class="user-info">User info go here</h2>
+  </mat-card-header>
+  <mat-card-content class="content-window">
+    <mat-grid-list cols="2" rowHeight="250px">
+      <mat-grid-tile>
+        <a routerLink="/register" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="../../assets/images/register.png">
+            <h2 class="functionDesc">Register User</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <a routerLink="" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="../../assets/images/add-faculty.png">
+            <h2 class="functionDesc">Add Faculty</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="250px">
+      <mat-grid-tile>
+        <a routerLink="/admin-panel/all-users" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="../../assets/images/users.png">
+            <h2 class="functionDesc">View Users</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <a routerLink="" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="../../assets/images/add-faculty.png">
+            <h2 class="functionDesc">Add Faculty</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

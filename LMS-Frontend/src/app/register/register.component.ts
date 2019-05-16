@@ -1,21 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { AdminService } from '../services/admin-service/admin.service';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material';
 import { Student } from '../model/student';
 import { Teacher } from '../model/teacher';
 import { Administration } from '../model/administration';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+// export class RegistrationValidator {
+//   static validate(registrationFormGroup: FormGroup) {
+//       let password = registrationFormGroup.controls.password.value;
+//       let repeatPassword = registrationFormGroup.controls.repeatPassword.value;
 
-    return (invalidCtrl || invalidParent);
-  }
-}
+//       if (repeatPassword.length <= 0) {
+//           return null;
+//       }
+
+//       if (repeatPassword !== password) {
+//           return {
+//               doesMatchPassword: true
+//           };
+//       }
+
+//       return null;
+
+//   }
+// }
 
 @Component({
   selector: 'app-register',
@@ -34,8 +44,7 @@ export class RegisterComponent implements OnInit {
   role: string = '';
 
   registerForm: FormGroup;
-
-  matcher = new MyErrorStateMatcher();
+  passwordForm: FormGroup;
 
   constructor(
     private adminService: AdminService,
@@ -55,13 +64,12 @@ export class RegisterComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       role: [null, Validators.required],
       cardNumber: [null, Validators.required]
-    },
-      { validator: this.checkPasswords });
+    });
   }
 
   onSubmit() {
     const user = this.registerForm.value;
-    delete user['re_password'];
+    delete user['confirmPassword']
     if (user['role'] === 'Student') {
       delete user['role'];
       this.student = user;
@@ -71,6 +79,7 @@ export class RegisterComponent implements OnInit {
     }
     else if (user['role'] === 'Teacher') {
       delete user['role'];
+      delete user['cardNumber']
       this.teacher = user;
       this.adminService.addNewTeacher(this.teacher).subscribe();
       this.dialogRef.close();
@@ -78,18 +87,12 @@ export class RegisterComponent implements OnInit {
     }
     else if (user['role'] === 'Administration') {
       delete user['role'];
+      delete user['cardNumber']
       this.administrator = user;
       this.adminService.addNewAdministration(this.administrator).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added an Admin Worker", "Close");
     }
-  }
-
-  checkPasswords(group: FormGroup) {
-    let pass = group.controls.password.value;
-    let confirmPass = group.controls.confirmPassword.value;
-
-    return pass === confirmPass ? null : { notSame: true }
   }
 
   openSnackBar(message: string, action: string) {
