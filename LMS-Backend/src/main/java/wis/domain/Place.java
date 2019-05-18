@@ -28,6 +28,11 @@ public class Place {
 	@Column(length = 50, nullable = false)
 	private String name;
 	
+	@NotNull
+	private Boolean deleted = false;
+	
+	@Version
+	private int version = 0;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Country country;
