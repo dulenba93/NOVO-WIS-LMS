@@ -2,8 +2,10 @@ package wis.domain;
 
 import java.util.Objects;
 import java.util.Set;
+import wis.utils.View.ShowPlace;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,33 +18,25 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
-@Where(clause = "deleted = 'false'")
 public class Country {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Size(max = 50)
+	@Column(length=128, nullable = false)
 	private String name;
-	
-	@NotNull
-	private Boolean deleted = false;
-	
-	@Version
-	private int version = 0;
-	
-	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	@JsonView(ShowPlace.class)
+	@OneToMany(mappedBy="country")
 	private Set<Place> place;
-	
-	
-	
 	
 	public Country() {}
 	
-	public Country(Long id, String name, Set<Place> place) {
-		this.id = id;
+	public Country(String name, Set<Place> place) {
 		this.name = name;
 		this.place = place;
 	}
@@ -61,22 +55,6 @@ public class Country {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 	public Set<Place> getPlace() {

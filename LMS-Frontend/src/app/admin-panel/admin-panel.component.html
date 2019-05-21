@@ -4,7 +4,7 @@
     <mat-card-subtitle class="forum-container-subtitle">Choose administrative options</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="content-window">
-    <mat-grid-list cols="2" rowHeight="250px">
+    <mat-grid-list cols="3" rowHeight="250px">
       <mat-grid-tile>
         <a routerLink="/register" class="material-link">
           <mat-card class="functionTile">
@@ -16,26 +16,42 @@
       <mat-grid-tile>
         <a routerLink="" class="material-link">
           <mat-card class="functionTile">
-            <img mat-card-image src="../../assets/images/add-faculty.png">
-            <h2 class="functionDesc">Add Faculty</h2>
-          </mat-card>
-        </a>
-      </mat-grid-tile>
-    </mat-grid-list>
-    <mat-grid-list cols="2" rowHeight="250px">
-      <mat-grid-tile>
-        <a routerLink="/admin-panel/all-users" class="material-link">
-          <mat-card class="functionTile">
-            <img mat-card-image src="../../assets/images/users.png">
-            <h2 class="functionDesc">View Users</h2>
+            <img mat-card-image src="../../assets/images/school.png">
+            <h2 class="functionDesc">University</h2>
           </mat-card>
         </a>
       </mat-grid-tile>
       <mat-grid-tile>
         <a routerLink="" class="material-link">
           <mat-card class="functionTile">
-            <img mat-card-image src="../../assets/images/add-faculty.png">
-            <h2 class="functionDesc">Add Faculty</h2>
+            <img mat-card-image src="../../assets/images/results.png">
+            <h2 class="functionDesc">View Results</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="3" rowHeight="250px">
+      <mat-grid-tile>
+        <a routerLink="/admin-panel/all-users" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="../../assets/images/lessons.png">
+            <h2 class="functionDesc">View Lessons</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <a routerLink="" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="../../assets/images/forums.png">
+            <h2 class="functionDesc">Forums</h2>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <a routerLink="" class="material-link">
+          <mat-card class="functionTile">
+            <img mat-card-image src="">
+            <h2 class="functionDesc">Something else</h2>
           </mat-card>
         </a>
       </mat-grid-tile>

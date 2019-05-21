@@ -17,8 +17,9 @@ export class AdminService {
 
   private BASE_URL = "http://localhost:8080"
   private USER_URL = `${this.BASE_URL}\\users`;
-  private STUDENT_URL = `${this.BASE_URL}\\students`
-  private CHECK_USER_URL = `${this.BASE_URL}\\users\\check`
+  private STUDENT_URL = `${this.BASE_URL}\\students`;
+  private CITIES_URL = `${this.BASE_URL}\\cities`
+  private CHECK_USER_URL = `${this.BASE_URL}\\users\\check`;
 
   constructor(private http: HttpClient) { }
 

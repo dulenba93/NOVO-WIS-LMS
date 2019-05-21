@@ -17,8 +17,11 @@ import { MaterialsPageComponent } from './materials-page/materials-page.componen
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { FacultiesComponent } from './faculties/faculties.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { TeacherPanelComponent } from './teacher-panel/teacher-panel.component';
+import { StudentPanelComponent } from './student-panel/student-panel.component';
 import { UniversityComponent } from './admin-panel/university/university/university.component';
 import { AddUniversityComponent } from './admin-panel/university/add-university/add-university.component';
+import { AdministrativePanelComponent } from './administrative-panel/administrative-panel.component';
 
 @NgModule({
   exports: [
@@ -34,8 +37,11 @@ import { AddUniversityComponent } from './admin-panel/university/add-university/
     MaterialDetailComponent,
     FacultiesComponent,
     AdminPanelComponent,
+    TeacherPanelComponent,
+    StudentPanelComponent,
     UniversityComponent,
-    AddUniversityComponent
+    AddUniversityComponent,
+    AdministrativePanelComponent
   ],
   imports: [
     BrowserModule,

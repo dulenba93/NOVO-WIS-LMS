@@ -36,11 +36,12 @@ mat-card-content {
 
 mat-grid-list {
   height: 50%;
-  width: 100% !important;
+  width: 60% !important;
 }
 
 mat-grid-tile {
   text-align: center;
+  width: 50% !important;
 }
 
 mat-card.functionTile {
@@ -89,4 +90,9 @@ mat-card.functionTile {
   font-size: 25px;
   text-align: center;
   margin: 0px;
+}
+
+.user-info{
+  margin-left: 28%;
+  margin-right: 2%;
 }

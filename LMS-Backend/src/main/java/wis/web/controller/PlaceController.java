@@ -3,6 +3,7 @@ package wis.web.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,6 +39,7 @@ public class PlaceController {
 		return new ResponseEntity<Place>(place, HttpStatus.CREATED);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place place) {
 		ps.updatePlace(id, place);
