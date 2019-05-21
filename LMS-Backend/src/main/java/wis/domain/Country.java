@@ -18,6 +18,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -30,7 +31,7 @@ public class Country {
 	@Column(length=128, nullable = false)
 	private String name;
 
-	@JsonView(ShowPlace.class)
+	@JsonIgnore
 	@OneToMany(mappedBy="country")
 	private Set<Place> place;
 	

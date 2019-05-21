@@ -6,4 +6,5 @@ import wis.domain.Place;
 
 public interface PlaceRepository extends JpaRepository<Place, Long>{
 
+	Place findByName(String name);
 }
