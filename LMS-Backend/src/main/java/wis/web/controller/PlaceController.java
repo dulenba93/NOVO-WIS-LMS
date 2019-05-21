@@ -39,6 +39,7 @@ public class PlaceController {
 		return new ResponseEntity<Place>(place, HttpStatus.CREATED);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place place) {
 		ps.updatePlace(id, place);

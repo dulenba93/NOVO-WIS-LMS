@@ -4,7 +4,6 @@
   </mat-card-header>
   <mat-card-content>
     <form class="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-      <div class="user-type-container">
         <div class="title-box">
           <h2 class="form-title">Type of User</h2>
         </div>
@@ -18,8 +17,8 @@
             </div>
           </div>
         </mat-radio-group>
-        <h2 class="form-title">General Info</h2>
         <table cellspacing="1" class="form-container">
+          <h2 class="form-title">General Info</h2>
           <tr>
             <td>
               <mat-form-field class="register-input">
@@ -165,7 +164,6 @@
             </td>
           </tr>
         </table>
-      </div>
     </form>
   </mat-card-content>
 </mat-card>
