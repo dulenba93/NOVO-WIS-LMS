@@ -4,146 +4,138 @@
   </mat-card-header>
   <mat-card-content>
     <form class="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-        <div class="title-box">
-          <h2 class="form-title">Type of User</h2>
-        </div>
-        <mat-radio-group formControlName="role" [(ngModel)]="role">
-          <div fxLayout="row" fxLayoutAlign="space-evenly center">
-            <div *ngFor="let role of roles">
-              <mat-card>
-                <img src="../../assets/images/{{role}}.png" class="user-type-image">
-                <mat-radio-button [value]="role">{{role}}</mat-radio-button>
-              </mat-card>
-            </div>
+      <div class="title-box">
+        <h2 class="form-title">Type of User</h2>
+      </div>
+      <mat-radio-group formControlName="role" [(ngModel)]="role">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <div *ngFor="let role of roles">
+            <mat-card>
+              <img src="../../assets/images/{{role}}.png" class="user-type-image">
+              <mat-radio-button [value]="role">{{role}}</mat-radio-button>
+            </mat-card>
           </div>
-        </mat-radio-group>
-        <table cellspacing="1" class="form-container">
-          <h2 class="form-title">General Info</h2>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Name" formControlName="firstName" name="name" required>
-                <mat-error
-                  *ngIf="registerForm.controls.firstName.hasError('required') && registerForm.controls.firstName.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Last name" formControlName="lastName" name="lastname" required>
-                <mat-error
-                  *ngIf="registerForm.controls.lastName.hasError('required') && registerForm.controls.lastName.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
+        </div>
+      </mat-radio-group>
+      <table cellspacing="1" class="form-container">
+        <h2 class="form-title">General Info</h2>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Name" formControlName="firstName" name="name" required>
+              <mat-error *ngIf="registerForm.controls.firstName.hasError('required') && registerForm.controls.firstName.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Last name" formControlName="lastName" name="lastname" required>
+              <mat-error *ngIf="registerForm.controls.lastName.hasError('required') && registerForm.controls.lastName.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
 
-          <h2 class="form-title">Address</h2>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Street name" formControlName="sreet" name="sreet" required>
-                <mat-error
-                  *ngIf="registerForm.controls.firstName.hasError('required') && registerForm.controls.firstName.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <mat-label>Place</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let place of places">
-                    {{place.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Number of street" formControlName="number" name="number" required>
-                <mat-error
-                  *ngIf="registerForm.controls.lastName.hasError('required') && registerForm.controls.lastName.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
 
-          <h2 class="form-title">Login Info</h2>
+        <h2 class="form-title">Address</h2>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Street name" formControlName="street" name="street" required>
+              <mat-error *ngIf="registerForm.controls.firstName.hasError('required') && registerForm.controls.firstName.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <mat-label>Place</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let place of places">
+                  {{place.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Number of street" formControlName="number" name="number" required>
+              <mat-error *ngIf="registerForm.controls.lastName.hasError('required') && registerForm.controls.lastName.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+
+        <h2 class="form-title">Login Info</h2>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Username" formControlName="username" name="username" required>
+              <mat-error *ngIf="registerForm.controls.username.hasError('required') && registerForm.controls.username.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+              <mat-error *ngIf="registerForm.controls.username.hasError('minLength')">
+                Username must contain 6 or more characters</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Password" formControlName="password" type="password" name="password"
+                required [type]="hide ? 'password' : 'text'">
+              <mat-error *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+              <mat-error *ngIf="registerForm.controls.password.hasError('minLength')">
+                Password must contain 8 or more characters</mat-error>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password" name="password"
+                required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('required') && registerForm.controls.confirmPassword.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+              <mat-error *ngIf="registerForm.hasError('notSame')">
+                Passwords do not match
+              </mat-error>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="register-input">
+              <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
+              <mat-error *ngIf="registerForm.controls.email.hasError('required') && registerForm.controls.email.touched && !registerForm.submitted">
+                You must enter a value</mat-error>
+              <mat-error *ngIf="registerForm.controls.email.hasError('email')">
+                You must enter a valid email</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <ng-container *ngIf="role === 'Student'; then indexNumber else personalNumber"></ng-container>
+        <ng-template #indexNumber>
+          <h2 class="form-title">Index Number</h2>
           <tr>
             <td>
               <mat-form-field class="register-input">
-                <input matInput placeholder="Username" formControlName="username" name="username" required>
-                <mat-error
-                  *ngIf="registerForm.controls.username.hasError('required') && registerForm.controls.username.touched && !registerForm.submitted">
+                <input matInput placeholder="Card number" formControlName="cardNumber" type="text" name="cardNumber"
+                  required>
+                <mat-error *ngIf="registerForm.controls.cardNumber.hasError('required') && registerForm.controls.cardNumber.touched && !registerForm.submitted">
                   You must enter a value</mat-error>
-                <mat-error *ngIf="registerForm.controls.username.hasError('minLength')">
-                  Username must contain 6 or more characters</mat-error>
               </mat-form-field>
             </td>
           </tr>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Password" formControlName="password" type="password" name="password"
-                  required [type]="hide ? 'password' : 'text'">
-                <mat-error
-                  *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-                <mat-error *ngIf="registerForm.controls.password.hasError('minLength')">
-                  Password must contain 8 or more characters</mat-error>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password"
-                  name="password" required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
-                <mat-error
-                  *ngIf="registerForm.controls.confirmPassword.hasError('required') && registerForm.controls.confirmPassword.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-                <mat-error *ngIf="registerForm.hasError('notSame')">
-                  Passwords do not match
-                </mat-error>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="register-input">
-                <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
-                <mat-error
-                  *ngIf="registerForm.controls.email.hasError('required') && registerForm.controls.email.touched && !registerForm.submitted">
-                  You must enter a value</mat-error>
-                <mat-error *ngIf="registerForm.controls.email.hasError('email')">
-                  You must enter a valid email</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <ng-container *ngIf="role === 'Student'; then indexNumber else personalNumber"></ng-container>
-          <ng-template #indexNumber>
-            <h2 class="form-title">Index Number</h2>
-            <tr>
-              <td>
-                <mat-form-field class="register-input">
-                  <input matInput placeholder="Card number" formControlName="cardNumber" type="text" name="cardNumber"
-                    required>
-                  <mat-error
-                    *ngIf="registerForm.controls.cardNumber.hasError('required') && registerForm.controls.cardNumber.touched && !registerForm.submitted">
-                    You must enter a value</mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-          </ng-template>
-          <!-- <ng-template #personalNumber>
+        </ng-template>
+        <!-- <ng-template #personalNumber>
             <h2 class="form-title">Personal ID Number</h2>
             <tr>
               <td>
@@ -157,13 +149,12 @@
               </td>
             </tr>
           </ng-template> -->
-          <tr>
-            <td>
-              <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid"
-                class="register-btn">Register</button>
-            </td>
-          </tr>
-        </table>
+        <tr>
+          <td>
+            <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid" class="register-btn">Register</button>
+          </td>
+        </tr>
+      </table>
     </form>
   </mat-card-content>
 </mat-card>

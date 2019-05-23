@@ -4,7 +4,9 @@ import { AdminService } from '../services/admin-service/admin.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material';
 import { Student } from '../model/student';
+import { PlaceService } from '../services/place-service/place.service';
 import { Teacher } from '../model/teacher';
+import { Place } from '../model/place';
 import { Administration } from '../model/administration';
 
 // export class RegistrationValidator {
@@ -41,12 +43,15 @@ export class RegisterComponent implements OnInit {
 
   roles: string[] = ['Student', 'Teacher', 'Administration'];
 
+  places: Place[];
+
   role: string = '';
 
   registerForm: FormGroup;
-  passwordForm: FormGroup;
+  addressForm: FormGroup;
 
   constructor(
+    private placeService: PlaceService,
     private adminService: AdminService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<RegisterComponent>,
@@ -58,6 +63,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
+      street: [null, Validators.required],
+      number: [null, Validators.required],
       username: [null, [Validators.required, Validators.minLength(6)]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
@@ -65,6 +72,8 @@ export class RegisterComponent implements OnInit {
       role: [null, Validators.required],
       cardNumber: [null, Validators.required]
     });
+
+    this.getPlaces();
   }
 
   onSubmit() {
@@ -99,6 +108,10 @@ export class RegisterComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 3000,
     });
+  }
+
+  getPlaces(){
+    this.placeService.getPlaces().subscribe(data => this.places = data);
   }
 
 }
