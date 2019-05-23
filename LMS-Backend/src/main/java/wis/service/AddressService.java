@@ -5,12 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import wis.domain.Address;
+import wis.domain.Place;
 import wis.repository.AddressRepository;
+import wis.repository.PlaceRepository;
 
 @Service
 public class AddressService {
 	@Autowired
 	AddressRepository ar;
+	@Autowired
+	PlaceRepository pr; 
 
 	public AddressService() {
 	}
@@ -24,6 +28,8 @@ public class AddressService {
 	}
 
 	public void addAddress(Address address) {
+		Place place = pr.findByName(address.getPlace().getName());
+		address.setPlace(place);
 		ar.save(address);
 	}
 

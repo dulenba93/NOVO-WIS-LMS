@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -38,6 +39,7 @@ public class University {
 	private int version = 0;
 	
 	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address", referencedColumnName = "id")
 	private Address address;
 	
 	@OneToOne(fetch = FetchType.LAZY)

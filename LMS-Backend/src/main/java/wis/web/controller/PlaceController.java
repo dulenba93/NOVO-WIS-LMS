@@ -27,7 +27,7 @@ public class PlaceController {
 	@Autowired
 	PlaceService ps;
 	
-	@JsonView(HideOptionalProperties.class)
+	//@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Place>> getAllPlace() {
 		return new ResponseEntity<Iterable<Place>>(ps.getPlace(), HttpStatus.OK);

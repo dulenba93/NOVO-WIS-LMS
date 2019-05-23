@@ -34,6 +34,9 @@ public class StudentController{
 		return new ResponseEntity<Iterable<Student>>(ts.getAllStudents(), HttpStatus.OK);
 	}
 	
+
+	
+	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Student> addStudent(@RequestBody Student student) {
 		ts.addStudent(student);

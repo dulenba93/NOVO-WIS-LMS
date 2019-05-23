@@ -23,7 +23,7 @@ public class CountryController {
 	@Autowired
 	CountryService cs;
 	
-	@JsonView(HideOptionalProperties.class)
+	//@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Country>> getAllCountry() {
 		return new ResponseEntity<Iterable<Country>>(cs.getCountry(), HttpStatus.OK);
