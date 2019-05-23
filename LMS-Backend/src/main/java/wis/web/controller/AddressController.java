@@ -23,7 +23,7 @@ public class AddressController {
 	@Autowired
 	AddressService as;
 	
-	@JsonView(HideOptionalProperties.class)
+	//@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Address>> getAllAddress() {
 		return new ResponseEntity<Iterable<Address>>(as.getAddress(), HttpStatus.OK);
