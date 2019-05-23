@@ -30,7 +30,6 @@ public class Country {
 	@Column(length=128, nullable = false)
 	private String name;
 
-	@JsonView(ShowPlace.class)
 	@OneToMany(mappedBy="country")
 	private Set<Place> place;
 	

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -51,7 +52,10 @@ import { AdministrativePanelComponent } from './administrative-panel/administrat
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBpBl1y_R0y_v50fEAaIomQoImXMvbwQOE'
+    })
   ],
   providers: [{provide: MatDialogRef, useValue: {}}], //for some reason we need this here for MatDialogRef
   bootstrap: [AppComponent],
