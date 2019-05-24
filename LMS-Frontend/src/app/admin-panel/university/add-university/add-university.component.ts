@@ -12,7 +12,7 @@ export class AddUniversityComponent implements OnInit {
 
   address: Address[];
   form: FormGroup;
-  place = String("Sssss");
+  place: String = "Sssss";
   country:String;
 
   constructor( private universityService : UniversityService,
@@ -38,9 +38,8 @@ export class AddUniversityComponent implements OnInit {
             id: item.id,
             street: item.street,
             number: item.number,
-            //ove greske ne uticu 
-            place: item.place.name,
-            country:item.country
+            place: item.place,
+            // country:item.country
           };
 
       })
@@ -51,7 +50,9 @@ export class AddUniversityComponent implements OnInit {
 
   setCityCountry(){
     this.place=this.address[0].place;
-    this.country=this.address[0].country;
+    console.log(this.place);
+    // this.country=this.address[0].country;
+    console.log(this.country);
   }
 
 

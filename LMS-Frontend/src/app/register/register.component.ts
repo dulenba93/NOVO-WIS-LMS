@@ -8,6 +8,8 @@ import { PlaceService } from '../services/place-service/place.service';
 import { Teacher } from '../model/teacher';
 import { Place } from '../model/place';
 import { Administration } from '../model/administration';
+import { AddressService } from '../services/address-service/address.service';
+import { Address } from '../model/address';
 
 // export class RegistrationValidator {
 //   static validate(registrationFormGroup: FormGroup) {
@@ -35,6 +37,7 @@ import { Administration } from '../model/administration';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  address: Address = new Address();
   student: Student = new Student();
   teacher: Teacher = new Teacher();
   administrator: Administration = new Administration();
@@ -47,10 +50,13 @@ export class RegisterComponent implements OnInit {
 
   role: string = '';
 
-  registerForm: FormGroup;
+  roleForm: FormGroup;
+  studentForm: FormGroup;
+  otherForm: FormGroup;
   addressForm: FormGroup;
 
   constructor(
+    private addressService: AddressService,
     private placeService: PlaceService,
     private adminService: AdminService,
     private fb: FormBuilder,
@@ -60,10 +66,16 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
+
+    this.roleForm = this.fb.group({
+      role: [null, Validators.required]
+    });
+
+    this.studentForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
       street: [null, Validators.required],
+      place: [null, Validators.required],
       number: [null, Validators.required],
       username: [null, [Validators.required, Validators.minLength(6)]],
       password: [null, [Validators.required, Validators.minLength(8)]],
@@ -73,10 +85,36 @@ export class RegisterComponent implements OnInit {
       cardNumber: [null, Validators.required]
     });
 
+    this.otherForm = this.fb.group({
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      street: [null, Validators.required],
+      place: [null, Validators.required],
+      number: [null, Validators.required],
+      username: [null, [Validators.required, Validators.minLength(6)]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
+      email: [null, [Validators.required, Validators.email]],
+      role: [null, Validators.required],
+      cardNumber: [null, Validators.required]
+    })
+
+    this.addressForm = this.fb.group({
+      street: [null, Validators.required],
+      place: [null, Validators.required],
+      number: [null, Validators.required]
+    })
+
     this.getPlaces();
   }
 
-  onSubmit() {
+  addressSubmit() {
+    const address = this.addressForm.value;
+    this.address = address;
+    this.addressService.addAddress(this.address).subscribe();
+  }
+
+  userSubmit() {
     const user = this.registerForm.value;
     delete user['confirmPassword']
     if (user['role'] === 'Student') {

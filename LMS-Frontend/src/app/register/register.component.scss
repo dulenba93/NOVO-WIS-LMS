@@ -37,6 +37,7 @@ mat-card-header{
 }
 
 mat-card-content{
+  overflow: auto;
   position: relative;
   width: 100%;
   height: 95%;

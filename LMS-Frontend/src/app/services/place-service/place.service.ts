@@ -8,7 +8,7 @@ import { Place } from '../../model/place';
 })
 export class PlaceService {
 
-  private placeUrl= "http://localhost:3000/place/"
+  private placeUrl= "http://localhost:8080/place/"
 
   constructor(
     private http: HttpClient
