@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.Student;
 import wis.domain.Teacher;
+import wis.service.AddressService;
 import wis.service.StudentService;
 import wis.service.TeacherService;
 import wis.utils.View.HideOptionalProperties;
@@ -28,17 +29,18 @@ public class StudentController{
 	@Autowired
 	StudentService ts;
 	
+	@Autowired
+	AddressService as;
+	
 	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Student>> getAllStudents() {
 		return new ResponseEntity<Iterable<Student>>(ts.getAllStudents(), HttpStatus.OK);
 	}
-	
 
-	
-	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+		as.addAddress(student.getAddress());
 		ts.addStudent(student);
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}

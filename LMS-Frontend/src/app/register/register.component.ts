@@ -74,29 +74,21 @@ export class RegisterComponent implements OnInit {
     this.studentForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      street: [null, Validators.required],
-      place: [null, Validators.required],
-      number: [null, Validators.required],
       username: [null, [Validators.required, Validators.minLength(6)]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
       email: [null, [Validators.required, Validators.email]],
-      role: [null, Validators.required],
       cardNumber: [null, Validators.required]
     });
 
     this.otherForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      street: [null, Validators.required],
-      place: [null, Validators.required],
-      number: [null, Validators.required],
       username: [null, [Validators.required, Validators.minLength(6)]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
       email: [null, [Validators.required, Validators.email]],
-      role: [null, Validators.required],
-      cardNumber: [null, Validators.required]
+      personalId: [null, Validators.required]
     })
 
     this.addressForm = this.fb.group({
@@ -108,34 +100,31 @@ export class RegisterComponent implements OnInit {
     this.getPlaces();
   }
 
-  addressSubmit() {
-    const address = this.addressForm.value;
-    this.address = address;
-    this.addressService.addAddress(this.address).subscribe();
-  }
-
   userSubmit() {
-    const user = this.registerForm.value;
+    const user = this.studentForm.value;
     delete user['confirmPassword']
-    if (user['role'] === 'Student') {
-      delete user['role'];
+    if (this.role === 'Student') {
       this.student = user;
+      this.student['address'] = this.addressForm.value;
       this.adminService.addNewStudent(this.student).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added a Student", "Close");
     }
-    else if (user['role'] === 'Teacher') {
-      delete user['role'];
-      delete user['cardNumber']
+  }
+
+  otheruserSubmit(){
+    const user = this.otherForm.value;
+    delete user['confirmPassword'];
+    if (this.role === 'Teacher') {
       this.teacher = user;
+      this.teacher['address'] = this.addressForm.value;
       this.adminService.addNewTeacher(this.teacher).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added a Teacher", "Close");
     }
-    else if (user['role'] === 'Administration') {
-      delete user['role'];
-      delete user['cardNumber']
+    else if (this.role === 'Administration') {
       this.administrator = user;
+      this.administrator['address'] = this.addressForm.value;
       this.adminService.addNewAdministration(this.administrator).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added an Admin Worker", "Close");

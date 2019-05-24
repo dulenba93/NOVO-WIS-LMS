@@ -18,6 +18,7 @@ export class AdminService {
   private BASE_URL = "http://localhost:8080";
   private USER_URL = `${this.BASE_URL}\\users`;
   private STUDENT_URL = `${this.BASE_URL}\\students`;
+  private ADMINISTRATOR_URL = `${this.BASE_URL}\\administrator`;
   private CITIES_URL = `${this.BASE_URL}\\cities`
   private CHECK_USER_URL = `${this.BASE_URL}\\users\\check`;
   private ADDRESS_URL = `${this.BASE_URL}\\address`;
@@ -29,7 +30,7 @@ export class AdminService {
   }
 
   addNewAdministration(admin: Admin): Observable<any> {
-    return this.http.post(this.USER_URL, admin);
+    return this.http.post(this.ADMINISTRATOR_URL, admin);
   }
 
   addNewTeacher(teacher: Teacher): Observable<any> {

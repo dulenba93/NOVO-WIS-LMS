@@ -1,3 +1,5 @@
+import { Address } from './address';
+
 export class Student{
     id: number
     firstName: String
@@ -6,4 +8,5 @@ export class Student{
     password: String
     email: String
     cardNumber: String
+    address: Address
 }

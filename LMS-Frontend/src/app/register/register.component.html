@@ -43,11 +43,11 @@
               You must enter a value</mat-error>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext (click)="addressSubmit()">Submit</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="addressForm.invalid">Submit</button>
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="studentForm">
+      <mat-step [stepControl]="studentForm" *ngIf="role === 'Student'">
         <form [formGroup]="studentForm">
           <ng-template matStepLabel>User Info</ng-template>
           <h2 class="form-title">General Info</h2>
@@ -109,7 +109,73 @@
               You must enter a value</mat-error>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext (click)="userSubmit()">Submit</button>
+            <button mat-raised-button color="primary" matStepperNext (click)="userSubmit()" [disabled]="studentForm.invalid">Submit</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="otherForm" *ngIf="role === 'Administration' || role === 'Teacher'">
+        <form [formGroup]="otherForm">
+          <ng-template matStepLabel>User Info</ng-template>
+          <h2 class="form-title">General Info</h2>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Name" formControlName="firstName" name="name" required>
+            <mat-error
+              *ngIf="otherForm.controls.firstName.hasError('required') && otherForm.controls.firstName.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Last name" formControlName="lastName" name="lastname" required>
+            <mat-error
+              *ngIf="otherForm.controls.lastName.hasError('required') && otherForm.controls.lastName.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+          </mat-form-field>
+          <h2 class="form-title">Login Info</h2>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Username" formControlName="username" name="username" required>
+            <mat-error
+              *ngIf="otherForm.controls.username.hasError('required') && otherForm.controls.username.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="otherForm.controls.username.hasError('minLength')">
+              Username must contain 6 or more characters</mat-error>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Password" formControlName="password" type="password" name="password" required
+              [type]="hide ? 'password' : 'text'">
+            <mat-error
+              *ngIf="otherForm.controls.password.hasError('required') && otherForm.controls.password.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="otherForm.controls.password.hasError('minLength')">
+              Password must contain 8 or more characters</mat-error>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password"
+              name="password" required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
+            <mat-error
+              *ngIf="otherForm.controls.confirmPassword.hasError('required') && otherForm.controls.confirmPassword.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="otherForm.hasError('notSame')">
+              Passwords do not match
+            </mat-error>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
+            <mat-error
+              *ngIf="otherForm.controls.email.hasError('required') && otherForm.controls.email.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="otherForm.controls.email.hasError('email')">
+              You must enter a valid email</mat-error>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Personal Id" formControlName="personalId" type="text" name="personalId"
+              required>
+            <mat-error
+              *ngIf="otherForm.controls.personalId.hasError('required') && otherForm.controls.personalId.touched && !otherForm.submitted">
+              You must enter a value</mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" matStepperNext (click)="otheruserSubmit()" [disabled]="otherForm.invalid">Submit</button>
           </div>
         </form>
       </mat-step>
