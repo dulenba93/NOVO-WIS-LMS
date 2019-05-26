@@ -19,9 +19,48 @@
           </mat-radio-group>
         </form>
       </mat-step>
+      <mat-step [stepControl]="loginForm">
+        <form [formGroup]="loginForm">
+          <ng-template matStepLabel>Login</ng-template>
+          <h2 class="form-title">Login Info</h2>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Username" formControlName="username" name="username" required>
+            <mat-error
+              *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched && !loginForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="loginForm.controls.username.hasError('minLength')">
+              Username must contain 6 or more characters</mat-error>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Password" formControlName="password" type="password" name="password" required
+              [type]="hide ? 'password' : 'text'">
+            <mat-error
+              *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched && !loginForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="loginForm.controls.password.hasError('minLength')">
+              Password must contain 8 or more characters</mat-error>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="register-input">
+            <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password"
+              name="password" required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
+            <mat-error
+              *ngIf="loginForm.controls.confirmPassword.hasError('required') && loginForm.controls.confirmPassword.touched && !loginForm.submitted">
+              You must enter a value</mat-error>
+            <mat-error *ngIf="loginForm.hasError('notSame')">
+              Passwords do not match
+            </mat-error>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="loginForm.invalid">Submit</button>
+          </div>
+        </form>
+      </mat-step>
       <mat-step [stepControl]="addressForm">
         <form [formGroup]="addressForm">
           <ng-template matStepLabel>Address</ng-template>
+          <h2 class="form-title">Address Info</h2>
           <mat-form-field class="register-input">
             <input matInput placeholder="Street name" formControlName="street" name="street" required>
             <mat-error
@@ -63,36 +102,6 @@
               *ngIf="studentForm.controls.lastName.hasError('required') && studentForm.controls.lastName.touched && !studentForm.submitted">
               You must enter a value</mat-error>
           </mat-form-field>
-          <h2 class="form-title">Login Info</h2>
-          <mat-form-field class="register-input">
-            <input matInput placeholder="Username" formControlName="username" name="username" required>
-            <mat-error
-              *ngIf="studentForm.controls.username.hasError('required') && studentForm.controls.username.touched && !studentForm.submitted">
-              You must enter a value</mat-error>
-            <mat-error *ngIf="studentForm.controls.username.hasError('minLength')">
-              Username must contain 6 or more characters</mat-error>
-          </mat-form-field>
-          <mat-form-field class="register-input">
-            <input matInput placeholder="Password" formControlName="password" type="password" name="password" required
-              [type]="hide ? 'password' : 'text'">
-            <mat-error
-              *ngIf="studentForm.controls.password.hasError('required') && studentForm.controls.password.touched && !studentForm.submitted">
-              You must enter a value</mat-error>
-            <mat-error *ngIf="studentForm.controls.password.hasError('minLength')">
-              Password must contain 8 or more characters</mat-error>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="register-input">
-            <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password"
-              name="password" required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
-            <mat-error
-              *ngIf="studentForm.controls.confirmPassword.hasError('required') && studentForm.controls.confirmPassword.touched && !studentForm.submitted">
-              You must enter a value</mat-error>
-            <mat-error *ngIf="studentForm.hasError('notSame')">
-              Passwords do not match
-            </mat-error>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </mat-form-field>
           <mat-form-field class="register-input">
             <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
             <mat-error
@@ -109,7 +118,8 @@
               You must enter a value</mat-error>
           </mat-form-field>
           <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="userSubmit()" [disabled]="studentForm.invalid">Submit</button>
+            <button mat-raised-button color="primary" matStepperNext (click)="userSubmit()"
+              [disabled]="studentForm.invalid">Submit</button>
           </div>
         </form>
       </mat-step>
@@ -129,36 +139,6 @@
               *ngIf="otherForm.controls.lastName.hasError('required') && otherForm.controls.lastName.touched && !otherForm.submitted">
               You must enter a value</mat-error>
           </mat-form-field>
-          <h2 class="form-title">Login Info</h2>
-          <mat-form-field class="register-input">
-            <input matInput placeholder="Username" formControlName="username" name="username" required>
-            <mat-error
-              *ngIf="otherForm.controls.username.hasError('required') && otherForm.controls.username.touched && !otherForm.submitted">
-              You must enter a value</mat-error>
-            <mat-error *ngIf="otherForm.controls.username.hasError('minLength')">
-              Username must contain 6 or more characters</mat-error>
-          </mat-form-field>
-          <mat-form-field class="register-input">
-            <input matInput placeholder="Password" formControlName="password" type="password" name="password" required
-              [type]="hide ? 'password' : 'text'">
-            <mat-error
-              *ngIf="otherForm.controls.password.hasError('required') && otherForm.controls.password.touched && !otherForm.submitted">
-              You must enter a value</mat-error>
-            <mat-error *ngIf="otherForm.controls.password.hasError('minLength')">
-              Password must contain 8 or more characters</mat-error>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="register-input">
-            <input matInput placeholder="Re-enter password" formControlName="confirmPassword" type="password"
-              name="password" required [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
-            <mat-error
-              *ngIf="otherForm.controls.confirmPassword.hasError('required') && otherForm.controls.confirmPassword.touched && !otherForm.submitted">
-              You must enter a value</mat-error>
-            <mat-error *ngIf="otherForm.hasError('notSame')">
-              Passwords do not match
-            </mat-error>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </mat-form-field>
           <mat-form-field class="register-input">
             <input matInput placeholder="Email" formControlName="email" type="email" name="email" required>
             <mat-error
@@ -175,17 +155,14 @@
               You must enter a value</mat-error>
           </mat-form-field>
           <div>
-            <button mat-raised-button color="primary" matStepperNext (click)="otheruserSubmit()" [disabled]="otherForm.invalid">Submit</button>
+            <button mat-raised-button color="primary" matStepperNext (click)="otheruserSubmit()"
+              [disabled]="otherForm.invalid">Submit</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
-        You are now done.
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
+        <h2 class="done-title">You have succesfully created a new {{role}}</h2>
       </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>

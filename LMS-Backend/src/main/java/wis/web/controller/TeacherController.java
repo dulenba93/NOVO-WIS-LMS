@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.Teacher;
+import wis.service.AccountsService;
+import wis.service.AddressService;
 import wis.service.TeacherService;
 import wis.utils.View.HideOptionalProperties;
 
@@ -26,6 +28,12 @@ public class TeacherController {
 	@Autowired
 	TeacherService ts;
 	
+	@Autowired
+	AddressService as;
+	
+	@Autowired
+	AccountsService acs;
+	
 	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
@@ -34,6 +42,8 @@ public class TeacherController {
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Teacher> addTeacher(@RequestBody Teacher teacher) {
+		acs.addAccount(teacher.getAccount());
+		as.addAddress(teacher.getAddress());
 		ts.addTeacher(teacher);
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.CREATED);
 	}

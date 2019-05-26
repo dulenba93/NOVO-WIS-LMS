@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.Admin;
+import wis.service.AccountsService;
 import wis.service.AdminService;
 import wis.utils.View.HideOptionalProperties;
 
@@ -26,6 +27,9 @@ public class AdminController {
 	@Autowired
 	AdminService as;
 	
+	@Autowired
+	AccountsService acs;
+	
 	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Admin>> getAllAdmin() {
@@ -34,6 +38,7 @@ public class AdminController {
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Admin> addUser(@RequestBody Admin admin) {
+		acs.addAccount(admin.getAccount());
 		as.addUser(admin);
 		return new ResponseEntity<Admin>(admin, HttpStatus.CREATED);
 	}

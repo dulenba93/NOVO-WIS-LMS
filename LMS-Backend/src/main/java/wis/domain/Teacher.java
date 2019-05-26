@@ -33,15 +33,13 @@ public class Teacher {
 
 	@Column(length = 64)
 	private String lastName;
-	
-	@Column(length=64, nullable = false)
-	private String username;
-
-	@Column(length=64, nullable = false)
-	private String password;
 
 	@Column(length=64, nullable = false)
 	private String email;
+	
+	@OneToOne
+	@JoinColumn(name="accountId")
+	private Accounts account;
 	
 	@OneToOne
 	@JoinColumn(name="addressId")
@@ -86,6 +84,87 @@ public class Teacher {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+
+	public Accounts getAccount() {
+		return account;
+	}
+
+	public void setAccount(Accounts account) {
+		this.account = account;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Set<CourseTeaching> getCourseTeachings() {
+		return courseTeachings;
+	}
+
+	public void setCourseTeachings(Set<CourseTeaching> courseTeachings) {
+		this.courseTeachings = courseTeachings;
+	}
+
+	public Set<Title> getTitle() {
+		return title;
+	}
+
+	public void setTitle(Set<Title> title) {
+		this.title = title;
+	}
+
+	public Faculty getFacultyDekan() {
+		return facultyDekan;
+	}
+
+	public void setFacultyDekan(Faculty facultyDekan) {
+		this.facultyDekan = facultyDekan;
+	}
+
+	public University getUniversityRektor() {
+		return universityRektor;
+	}
+
+	public void setUniversityRektor(University universityRektor) {
+		this.universityRektor = universityRektor;
+	}
+
+	public StudyProgram getStudyProgramRukovodilac() {
+		return StudyProgramRukovodilac;
+	}
+
+	public void setStudyProgramRukovodilac(StudyProgram studyProgramRukovodilac) {
+		StudyProgramRukovodilac = studyProgramRukovodilac;
 	}
 
 	public String getPersonalIdentificationNumber() {

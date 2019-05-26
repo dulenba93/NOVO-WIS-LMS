@@ -33,15 +33,13 @@ public class Student {
 
 	@Column(length = 64)
 	private String lastName;
-	
-	@Column(length=64, nullable = false)
-	private String username;
-
-	@Column(length=64, nullable = false)
-	private String password;
 
 	@Column(length=64, nullable = false)
 	private String email;
+	
+	@OneToOne
+	@JoinColumn(name="accountId")
+	private Accounts account;
 	
 	@OneToOne
 	@JoinColumn(name="addressId")
@@ -85,8 +83,14 @@ public class Student {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
-	
+
+	public Accounts getAccount() {
+		return account;
+	}
+
+	public void setAccount(Accounts account) {
+		this.account = account;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -102,22 +106,6 @@ public class Student {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEmail() {

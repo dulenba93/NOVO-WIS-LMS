@@ -51,12 +51,12 @@ export class RegisterComponent implements OnInit {
   role: string = '';
 
   roleForm: FormGroup;
+  loginForm: FormGroup;
   studentForm: FormGroup;
   otherForm: FormGroup;
   addressForm: FormGroup;
 
   constructor(
-    private addressService: AddressService,
     private placeService: PlaceService,
     private adminService: AdminService,
     private fb: FormBuilder,
@@ -71,12 +71,21 @@ export class RegisterComponent implements OnInit {
       role: [null, Validators.required]
     });
 
+    this.loginForm = this.fb.group({
+      username: [null, [Validators.required, Validators.minLength(6)]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(8)]]
+    })
+
+    this.addressForm = this.fb.group({
+      street: [null, Validators.required],
+      place: [null, Validators.required],
+      number: [null, Validators.required]
+    })
+
     this.studentForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      username: [null, [Validators.required, Validators.minLength(6)]],
-      password: [null, [Validators.required, Validators.minLength(8)]],
-      confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
       email: [null, [Validators.required, Validators.email]],
       cardNumber: [null, Validators.required]
     });
@@ -84,17 +93,8 @@ export class RegisterComponent implements OnInit {
     this.otherForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      username: [null, [Validators.required, Validators.minLength(6)]],
-      password: [null, [Validators.required, Validators.minLength(8)]],
-      confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
       email: [null, [Validators.required, Validators.email]],
-      personalId: [null, Validators.required]
-    })
-
-    this.addressForm = this.fb.group({
-      street: [null, Validators.required],
-      place: [null, Validators.required],
-      number: [null, Validators.required]
+      personalIdentificationNumber: [null, Validators.required]
     })
 
     this.getPlaces();
@@ -106,6 +106,7 @@ export class RegisterComponent implements OnInit {
     if (this.role === 'Student') {
       this.student = user;
       this.student['address'] = this.addressForm.value;
+      this.student['account'] = this.loginForm.value;
       this.adminService.addNewStudent(this.student).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added a Student", "Close");
@@ -118,6 +119,7 @@ export class RegisterComponent implements OnInit {
     if (this.role === 'Teacher') {
       this.teacher = user;
       this.teacher['address'] = this.addressForm.value;
+      this.teacher['account'] = this.loginForm.value;
       this.adminService.addNewTeacher(this.teacher).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added a Teacher", "Close");
@@ -125,6 +127,7 @@ export class RegisterComponent implements OnInit {
     else if (this.role === 'Administration') {
       this.administrator = user;
       this.administrator['address'] = this.addressForm.value;
+      this.administrator['account'] = this.loginForm.value;
       this.adminService.addNewAdministration(this.administrator).subscribe();
       this.dialogRef.close();
       this.openSnackBar("You have successfully added an Admin Worker", "Close");

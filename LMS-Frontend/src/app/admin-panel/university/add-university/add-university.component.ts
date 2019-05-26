@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UniversityService } from 'src/app/services/university-service/university.service';
 import { Address } from 'src/app/model/address';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import { Place } from 'src/app/model/place';
 
 @Component({
   selector: 'app-add-university',
@@ -12,7 +13,7 @@ export class AddUniversityComponent implements OnInit {
 
   address: Address[];
   form: FormGroup;
-  place: String = "Sssss";
+  place: Place;
   country:String;
 
   constructor( private universityService : UniversityService,
