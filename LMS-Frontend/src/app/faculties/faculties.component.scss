@@ -9,11 +9,38 @@
 
 
 mat-card.facultyTile{
-  width: 20%;
-  height: 80%;
+  border-radius: 50%;
+  width: 18%;
+  height: 40%;
   padding: 0px;
   position: absolute;
   text-align: center;
+  transition: transform .5s;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+    content: '';
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale3d(1.006, 1.006, 1);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+a{
+  text-decoration: none;
 }
 
 mat-grid-list{
@@ -30,7 +57,7 @@ agm-map{
 
 .facultyName{
   font-family: title;
-  font-size: 25px;
+  font-size: 1.4vw;
   text-align: center;
   margin: 0px;
 }
@@ -47,4 +74,5 @@ agm-map{
 
 .uni-container{
   padding: 20px;
+  margin-top: 1.6vw;
 }

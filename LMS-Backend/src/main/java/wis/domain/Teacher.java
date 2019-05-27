@@ -174,6 +174,8 @@ public class Teacher {
 	public void setPersonalIdentificationNumber(String personalIdentificationNumber) {
 		this.personalIdentificationNumber = personalIdentificationNumber;
 	}
+	
+	
 
 	public Boolean getDeleted() {
 		return deleted;

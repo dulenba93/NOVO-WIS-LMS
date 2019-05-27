@@ -2,20 +2,12 @@
   class="faculty-row-container">
   <div fxLayout="column" *ngFor="let faculty of faculties" fxFlex="33%">
     <mat-card class="facultyTile">
-      <mat-grid-list cols="1" rowHeight="50%">
-        <mat-grid-tile>
-          <a routerLink="/faculties/{{faculty.id}}" class="material-link">
-            <div class="uni-container">
-              <h2 class=facultyName>{{faculty.name}}</h2>
-              <img mat-card-image [src]="faculty.img" class="faculty-image">
-            </div>
-          </a>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <agm-map [latitude]="latitude" [longitude]="longitude">
-          </agm-map>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <a routerLink="/faculties/{{faculty.name}}" class="material-link">
+        <div class="uni-container">
+          <h2 class=facultyName>{{faculty.name}}</h2>
+          <img mat-card-image [src]="faculty.img" class="faculty-image">
+        </div>
+      </a>
     </mat-card>
   </div>
 </div>
