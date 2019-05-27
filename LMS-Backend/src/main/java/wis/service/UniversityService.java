@@ -1,16 +1,22 @@
 package wis.service;
 
 import java.util.Optional;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import wis.domain.University;
+import wis.domain.Address;
+import wis.repository.AddressRepository;
 import wis.repository.UniversityRepository;
 
 @Service
 public class UniversityService {
 	@Autowired
 	UniversityRepository ur;
+	@Autowired
+	AddressRepository ar;
 
 	public UniversityService() {
 	}
@@ -24,7 +30,12 @@ public class UniversityService {
 	}
 
 	public void addUniversity(University university) {
+		Optional<Address> address= ar.findById(university.getAddress().getId());
+		System.out.println(university.getAddress().getId());
+		if(address.isPresent()) {
+		university.setAddress(address.get());
 		ur.save(university);
+		}
 	}
 
 	public void deleteUniversity(Long id) {

@@ -22,7 +22,7 @@
 
     <p>
       <mat-form-field>
-        <mat-select placeholder="Choose University Address" [formControl]="address" (change)="setCityCountry()">
+        <mat-select placeholder="Choose University Address" [formControl]="address" [value]="selectValue" (selectionChange)="setCityCountry($event)">
           <mat-option *ngFor="let a of address;" [value]="a">{{a.street}}-broj:{{a.number}}</mat-option>
           <mat-option value="option">Add New Address</mat-option>
         </mat-select>
@@ -32,7 +32,7 @@
     <p>
       <mat-form-field appearance="legacy">
         <mat-label>City</mat-label>
-        <input matInput placeholder="Enter name" formControlName="city" [(ngModel)]="place">
+        <input matInput placeholder="Enter name" formControlName="city" [(ngModel)]="place" disabled="true">
       </mat-form-field>
     </p>
 
@@ -43,5 +43,17 @@
       </mat-form-field>
     </p>
 
+    
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>University Rektor</mat-label>
+        <input matInput placeholder="Enter name" formControlName="rektor" [(ngModel)]="rektor">
+      </mat-form-field>
+    </p>
+
   </form>
+
+  <mat-card-actions class="login-btn-cotainer">
+    <button mat-raised-button (click)="sumbit()" color="primary" class="login-btn">Add University</button>
+  </mat-card-actions>
 </mat-card>

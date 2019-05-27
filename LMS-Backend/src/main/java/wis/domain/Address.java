@@ -1,6 +1,7 @@
 package wis.domain;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -40,6 +42,9 @@ public class Address {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Place place;
+	
+	//@OneToMany(mappedBy = "university", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	//private Set<University> university;
 	
 	public Address() {}
 	
