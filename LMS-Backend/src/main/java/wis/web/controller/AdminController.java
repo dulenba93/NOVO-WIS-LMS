@@ -2,6 +2,8 @@ package wis.web.controller;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,7 @@ public class AdminController {
 		return new ResponseEntity<Iterable<Admin>>(as.getAllUsers(), HttpStatus.OK);
 	}
 	
+	@Transactional
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Admin> addUser(@RequestBody Admin admin) {
 		acs.addAccount(admin.getAccount());

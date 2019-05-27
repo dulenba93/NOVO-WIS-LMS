@@ -20,10 +20,6 @@ public class AccountsService {
 		return accountsRepository.findAll();
 	}
 	
-	public Optional<Accounts> getAccountById(Long id){
-		return accountsRepository.findById(id);
-	}
-	
 	public void addAccount(Accounts account) {
 		accountsRepository.save(account);
 	}
@@ -40,4 +36,13 @@ public class AccountsService {
 			accountsRepository.save(account);
 		}
 	}
+	
+	public Optional<Accounts> getAccount(String username) {
+		return accountsRepository.getByUsername(username);
+	}
+	
+	public Optional<Accounts> getAccount(String username, String password) {
+		return accountsRepository.getByUsernameAndPassword(username, password);
+	}
+
 }

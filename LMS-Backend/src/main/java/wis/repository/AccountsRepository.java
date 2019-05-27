@@ -1,11 +1,15 @@
 package wis.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import wis.domain.Accounts;
 
 @Repository
-public interface AccountsRepository extends JpaRepository<Accounts, Long> {
+public interface AccountsRepository extends CrudRepository<Accounts, Long> {
+	Optional<Accounts> getByUsername(String username);
+	Optional<Accounts> getByUsernameAndPassword(String username, String password);
 
 }

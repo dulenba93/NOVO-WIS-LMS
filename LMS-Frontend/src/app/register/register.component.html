@@ -17,6 +17,9 @@
               </div>
             </div>
           </mat-radio-group>
+          <div>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="roleForm.invalid">Submit</button>
+          </div>
         </form>
       </mat-step>
       <mat-step [stepControl]="loginForm">
@@ -148,10 +151,10 @@
               You must enter a valid email</mat-error>
           </mat-form-field>
           <mat-form-field class="register-input">
-            <input matInput placeholder="Personal Id" formControlName="personalId" type="text" name="personalId"
+            <input matInput placeholder="Personal Id" formControlName="personalIdentificationNumber" type="text" name="personalIdentificationNumber"
               required>
             <mat-error
-              *ngIf="otherForm.controls.personalId.hasError('required') && otherForm.controls.personalId.touched && !otherForm.submitted">
+              *ngIf="otherForm.controls.personalIdentificationNumber.hasError('required') && otherForm.controls.personalIdentificationNumber.touched && !otherForm.submitted">
               You must enter a value</mat-error>
           </mat-form-field>
           <div>
