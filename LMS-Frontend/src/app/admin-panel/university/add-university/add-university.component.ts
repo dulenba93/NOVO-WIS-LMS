@@ -4,6 +4,8 @@ import { Address } from 'src/app/model/address';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { Place } from 'src/app/model/place';
 import { MatSelectChange } from '@angular/material';
+import { University } from 'src/app/model/university';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-add-university',
@@ -16,9 +18,12 @@ export class AddUniversityComponent implements OnInit {
   form: FormGroup;
   place: Place;
   country:String;
+  university: University = new University();
+  address_id:number;
 
   constructor( private universityService : UniversityService,
-               private fb:FormBuilder) {
+               private fb:FormBuilder,
+               private snackBar: MatSnackBar) {
 
                 this.form = fb.group({
                   'name': [null],
@@ -58,8 +63,27 @@ export class AddUniversityComponent implements OnInit {
 
     this.form.get("city").setValue($event.value.place.name);
     this.form.get("country").setValue($event.value.place.country.name);
+    this.university.address.id = $event.value.id;
+  }
+
+
+  onSubmit($event: EventEmitter<MatSelectChange>){
+    this.university.name = this.form.get("name").value;
+    this.university.year = this.form.get("date").value;
+
+    console.log( this.university)
+    this.universityService.addNewUniversity(this.university).subscribe();
+    this.openSnackBar("You have successfully added University", "Close");
+    //treba dodati notifikaciju i redirektovati
 
   }
 
+
+  
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
 
 }
