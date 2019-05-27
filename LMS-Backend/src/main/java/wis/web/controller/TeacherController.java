@@ -2,8 +2,6 @@ package wis.web.controller;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +40,6 @@ public class TeacherController {
 		return new ResponseEntity<Iterable<Teacher>>(ts.getTeacher(), HttpStatus.OK);
 	}
 	
-	@Transactional
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Teacher> addTeacher(@RequestBody Teacher teacher) {
 		acs.addAccount(teacher.getAccount());

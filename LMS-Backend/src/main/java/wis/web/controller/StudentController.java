@@ -2,8 +2,6 @@ package wis.web.controller;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +40,6 @@ public class StudentController{
 		return new ResponseEntity<Iterable<Student>>(ts.getAllStudents(), HttpStatus.OK);
 	}
 
-	@Transactional //this is put here so that if one method fails, all else is reverted
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Student> addStudent(@RequestBody Student student) {
 		acs.addAccount(student.getAccount());

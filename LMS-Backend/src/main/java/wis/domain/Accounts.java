@@ -1,14 +1,10 @@
 package wis.domain;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -33,22 +29,6 @@ public class Accounts {
 	
 	@Version
 	private int version = 0;
-	
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<AccountPermission> userPermissions;
-	
-	public Accounts() {
-		
-	}
-	
-	public Accounts(Long id, String username, String password, Set<AccountPermission> userPermissions) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.userPermissions = userPermissions;
-	}
-
 
 	public Long getId() {
 		return id;
@@ -73,14 +53,5 @@ public class Accounts {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public Set<AccountPermission> getUserPermissions() {
-		return userPermissions;
-	}
-
-	public void setUserPermissions(Set<AccountPermission> userPermissions) {
-		this.userPermissions = userPermissions;
-	}
-
 
 }
