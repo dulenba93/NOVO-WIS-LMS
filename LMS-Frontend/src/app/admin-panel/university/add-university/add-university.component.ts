@@ -60,10 +60,11 @@ export class AddUniversityComponent implements OnInit {
 
   //ovako se dohvata vrednost na promenu mat-select
   setCityCountry($event: EventEmitter<MatSelectChange>){
-
+    /*
     this.form.get("city").setValue($event.value.place.name);
     this.form.get("country").setValue($event.value.place.country.name);
     this.university.address.id = $event.value.id;
+    */
   }
 
 

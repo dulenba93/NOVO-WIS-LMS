@@ -31,7 +31,6 @@ public class UniversityService {
 
 	public void addUniversity(University university) {
 		Optional<Address> address= ar.findById(university.getAddress().getId());
-		System.out.println(university.getAddress().getId());
 		if(address.isPresent()) {
 		university.setAddress(address.get());
 		ur.save(university);

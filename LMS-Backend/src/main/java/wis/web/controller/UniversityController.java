@@ -26,7 +26,7 @@ public class UniversityController {
 	@Autowired
 	UniversityService us;
 	
-	@JsonView(HideOptionalProperties.class)
+//	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<University>> getAllUniversity() {
 		return new ResponseEntity<Iterable<University>>(us.getUniversity(), HttpStatus.OK);

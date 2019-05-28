@@ -4,13 +4,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import wis.domain.Address;
 import wis.domain.Faculty;
+import wis.domain.University;
+import wis.repository.AddressRepository;
 import wis.repository.FacultyRepository;
+import wis.repository.UniversityRepository;
 
 @Service
 public class FacultyService {
 	@Autowired
 	FacultyRepository fr;
+	@Autowired
+	UniversityRepository ur;
+	@Autowired
+	AddressRepository ar;
 
 	public FacultyService() {
 	}
@@ -24,7 +32,14 @@ public class FacultyService {
 	}
 
 	public void addFaculty(Faculty faculty) {
-		fr.save(faculty);
+		Optional<Address> address= ar.findById(faculty.getAddress().getId());
+		Optional<University> university= ur.findById(faculty.getUniversity().getId());
+		if(address.isPresent() && university.isPresent()) {
+			faculty.setAddress(address.get());
+			faculty.setUniversity(university.get());
+			fr.save(faculty);
+		}
+		
 	}
 
 	public void deleteFaculty(Long id) {

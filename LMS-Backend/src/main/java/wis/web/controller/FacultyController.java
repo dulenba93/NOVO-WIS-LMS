@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import wis.domain.Faculty;
 import wis.service.FacultyService;
 import wis.utils.View.HideOptionalProperties;
+import wis.utils.View.ShowFaculty;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -43,7 +44,7 @@ public class FacultyController {
 		fs.updateFaculty(id, faculty);
 		return new ResponseEntity<Faculty>(faculty, HttpStatus.CREATED);
 	}
-	
+	//@JsonView(ShowFaculty.class)
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id) {
 		Optional<Faculty> faculty = fs.getFaculty(id);

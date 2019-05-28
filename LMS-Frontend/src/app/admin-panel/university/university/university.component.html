@@ -1,9 +1,32 @@
+<mat-card class="home-content">
+  <mat-card-header>
+    <mat-card-title class="forum-container-title">All University
+        <a [routerLink]="[ '.', 'add-university' ]">
+      <button mat-raised-button (click)="onSubmit($event)" color="primary" class="login-btn">Add University</button>
+          </a>
+    </mat-card-title>
+  </mat-card-header>
+  <div fxLayout="row wrap">
+  <div  *ngFor="let u of university;">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{u.name}}</mat-card-title>
+      <mat-card-subtitle>{{u.address.street}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://www.epicentarpress.rs/docs/1502800267-LR-KapetanMisinoZdanjeBeograd03.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Sveučilište u Beogradu (srp. Универзитет у Београду) je najstarija i najveća institucija visokog obrazovanja u Srbiji broji preko 7.000 članova
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>ENTER UNIVERSITY</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+</div>
 
-            <p>
-                <mat-form-field appearance="outline">
-                  <mat-label>Legacy form field</mat-label>
-                  <input matInput placeholder="Name">
-                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                  <mat-hint>Hint</mat-hint>
-                </mat-form-field>
-              </p>
+
+
+</mat-card>

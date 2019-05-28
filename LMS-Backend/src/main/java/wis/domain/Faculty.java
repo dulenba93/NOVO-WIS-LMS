@@ -45,10 +45,26 @@ public class Faculty {
 	@OneToOne(fetch = FetchType.LAZY)
 	private Teacher dekan;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Address address;
 	
 	
+	public Teacher getDekan() {
+		return dekan;
+	}
+
+	public void setDekan(Teacher dekan) {
+		this.dekan = dekan;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public Faculty() {}
 	
 	public Faculty(Long id, String name, University university, Set<StudyProgram> studyProgram) {
