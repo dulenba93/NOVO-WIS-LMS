@@ -1,6 +1,6 @@
 package wis.web.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.Student;
+import wis.dto.StudentDTO;
+import wis.mapper.StudentMapper;
 import wis.service.AccountsService;
 import wis.service.AddressService;
 import wis.service.StudentService;
@@ -39,10 +41,15 @@ public class StudentController{
 	@Autowired
 	StudentYearService sys;
 	
-	@JsonView(HideOptionalProperties.class)
-	@RequestMapping()
-	public ResponseEntity<Iterable<Student>> getAllStudents() {
-		return new ResponseEntity<Iterable<Student>>(ts.getAllStudents(), HttpStatus.OK);
+	@Autowired
+	StudentMapper smpr;
+	
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public ResponseEntity<Iterable<StudentDTO>> getAllStudents() {
+		System.out.println("anything");
+		List<Student> students = ts.getAllStudents();
+		System.out.println("drugo");
+		return ResponseEntity.ok(smpr.toDTO(students));
 	}
 
 	@Transactional
@@ -61,12 +68,9 @@ public class StudentController{
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
-		Optional<Student> student = ts.getStudentById(id);
-		if(student.isPresent()) {
-			return new ResponseEntity<Student>(student.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+	public StudentDTO getStudentById(@PathVariable Long id) {
+		Student student = ts.getStudentById(id);
+		return smpr.toDTO(student);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

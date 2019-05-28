@@ -88,4 +88,6 @@ public class Place {
 	public int hashCode() {
 		return Objects.hashCode(id);
 	}
+	
+	
 }

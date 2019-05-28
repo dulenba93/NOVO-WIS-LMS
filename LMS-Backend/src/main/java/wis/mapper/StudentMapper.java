@@ -2,6 +2,7 @@ package wis.mapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -49,24 +50,19 @@ public class StudentMapper implements Mapper<Student, StudentDTO> {
 		return retVal;
 	}
 
-	
-	public Collection<StudentDTO> toDtoList(Collection<Student> entityList) {
-	    if ( entityList == null ) {
-	        return null;
-	    }
-
-	    Collection<StudentDTO> collection = new ArrayList<StudentDTO>(entityList.size());
-	    for (Student student : entityList) {
-	        collection.add(toDTO(student));
-	    }
-
-	    return collection;
-	}
-
 	@Override
-	public Collection<StudentDTO> toDTO(Collection<Student> es) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StudentDTO> toDTO(List<Student> entityList) {
+		 if ( entityList == null ) {
+		        return null;
+		    }
+
+		    List<StudentDTO> list = new ArrayList<StudentDTO>(entityList.size());
+		    for (Student student : entityList) {
+		    	list.add(toDTO(student));
+		    }
+
+		    return list;
 	}
+
 
 }

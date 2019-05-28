@@ -68,16 +68,16 @@ export class AddUniversityComponent implements OnInit {
   }
 
 
-  onSubmit($event: EventEmitter<MatSelectChange>){
-    this.university.name = this.form.get("name").value;
-    this.university.year = this.form.get("date").value;
+  // onSubmit($event: EventEmitter<MatSelectChange>){
+  //   this.university.name = this.form.get("name").value;
+  //   this.university.year = this.form.get("date").value;
 
-    console.log( this.university)
-    this.universityService.addNewUniversity(this.university).subscribe();
-    this.openSnackBar("You have successfully added University", "Close");
-    //treba dodati notifikaciju i redirektovati
+  //   console.log( this.university)
+  //   this.universityService.addNewUniversity(this.university).subscribe();
+  //   this.openSnackBar("You have successfully added University", "Close");
+  //   //treba dodati notifikaciju i redirektovati
 
-  }
+  // }
 
 
   
