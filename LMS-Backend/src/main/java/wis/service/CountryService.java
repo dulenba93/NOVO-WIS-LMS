@@ -1,6 +1,8 @@
 package wis.service;
 
+import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,12 @@ public class CountryService {
 	public CountryService() {
 	}
 
-	public Iterable<Country> getCountry() {
+	public List<Country> getCountry() {
 		return cr.findAll();
 	}
 
-	public Optional<Country> getCountry(Long id) {
-		return cr.findById(id);
+	public Country getCountry(Long id) {
+		return cr.findById(id).orElse(null);
 	}
 
 	public void addCountry(Country country) {

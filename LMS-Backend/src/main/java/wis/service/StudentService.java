@@ -1,15 +1,12 @@
 package wis.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import wis.domain.Admin;
 import wis.domain.Student;
-import wis.domain.StudentYear;
-import wis.domain.YearOfStudy;
-import wis.repository.AdminRepository;
 import wis.repository.StudentRepository;
 import wis.repository.YearOfStudyRepository;
 
@@ -24,12 +21,12 @@ public class StudentService {
 
 	public StudentService() {}
 	
-	public Iterable<Student> getAllStudents(){
+	public List<Student> getAllStudents(){//u maperu radimo sa listama pa moramo korisiti listu
 		return studentRepository.findAll();
 	}
 	
-	public Optional<Student> getStudentById(Long id){
-		return studentRepository.findById(id);
+	public Student getStudentById(Long id){//changed Optional argument, not to be used apparently
+		return studentRepository.findById(id).orElse(null);//if not found, return null
 	}
 	
 	public void addStudent(Student student) {

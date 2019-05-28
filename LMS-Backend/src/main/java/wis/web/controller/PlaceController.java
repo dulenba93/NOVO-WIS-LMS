@@ -27,7 +27,6 @@ public class PlaceController {
 	@Autowired
 	PlaceService ps;
 	
-	//@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Place>> getAllPlace() {
 		return new ResponseEntity<Iterable<Place>>(ps.getPlace(), HttpStatus.OK);
@@ -39,7 +38,6 @@ public class PlaceController {
 		return new ResponseEntity<Place>(place, HttpStatus.CREATED);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place place) {
 		ps.updatePlace(id, place);
