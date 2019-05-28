@@ -28,11 +28,6 @@ public class CountryMapper implements Mapper<Country, CountryDTO> {
 
 		retVal.setId(entity.getId());
 		retVal.setName(entity.getName());
-		retVal.setPlaces(new ArrayList<>());
-		for(Place place : entity.getPlace()) {
-			retVal.getPlaces().add("/place" + place.getId());
-		}
-
 		return retVal;
 	}
 

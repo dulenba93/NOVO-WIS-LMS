@@ -18,6 +18,10 @@ public class PlaceMapper implements Mapper<Place, PlaceDTO> {
 
 	@Autowired
 	PlaceService ps;
+	
+
+	@Autowired
+	CountryMapper countryMapper;
 
 	@Override
 	public PlaceDTO toDTO(Place entity) {
@@ -29,6 +33,10 @@ public class PlaceMapper implements Mapper<Place, PlaceDTO> {
 
 		retVal.setId(entity.getId());
 		retVal.setName(entity.getName());
+		retVal.setVersion(entity.getVersion());
+		retVal.setCountryDto(new CountryDTO());
+		retVal.setCountryDto(countryMapper.toDTO(entity.getCountry()));
+
 
 		return retVal;
 	}

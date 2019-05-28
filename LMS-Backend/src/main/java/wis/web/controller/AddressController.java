@@ -1,6 +1,8 @@
 package wis.web.controller;
 
 import java.util.Optional;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.annotation.JsonView;
+
 import wis.domain.Address;
+import wis.domain.Place;
+import wis.dto.AddressDTO;
+import wis.mapper.AddressMapper;
 import wis.service.AddressService;
-import wis.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -23,10 +27,14 @@ public class AddressController {
 	@Autowired
 	AddressService as;
 	
+	@Autowired
+	AddressMapper addressMapper;
+	
 	//@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<Address>> getAllAddress() {
-		return new ResponseEntity<Iterable<Address>>(as.getAddress(), HttpStatus.OK);
+	public ResponseEntity<Iterable<AddressDTO>> getAllAddress() {
+		List<Address> address = as.getAddress();
+		return ResponseEntity.ok(addressMapper.toDTO(address));
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
@@ -42,12 +50,9 @@ public class AddressController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Address> getAddressById(@PathVariable Long id) {
-		Optional<Address> address = as.getAddress(id);
-		if(address.isPresent()) {
-			return new ResponseEntity<Address>(address.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<Address>(HttpStatus.NOT_FOUND);
+	public AddressDTO getAddressById(@PathVariable Long id) {
+		Address address = as.getAddress(id).get();
+		return addressMapper.toDTO(address);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
