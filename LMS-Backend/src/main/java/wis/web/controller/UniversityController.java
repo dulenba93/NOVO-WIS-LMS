@@ -1,5 +1,6 @@
 package wis.web.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.University;
+import wis.dto.UniversityDTO;
+import wis.mapper.UniversityMapper;
 import wis.service.UniversityService;
 import wis.utils.View.HideOptionalProperties;
 
@@ -26,10 +29,14 @@ public class UniversityController {
 	@Autowired
 	UniversityService us;
 	
+	@Autowired
+	UniversityMapper universityMapper;
+	
 //	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<University>> getAllUniversity() {
-		return new ResponseEntity<Iterable<University>>(us.getUniversity(), HttpStatus.OK);
+	public ResponseEntity<Iterable<UniversityDTO>> getAllUniversity() {
+		List<University> university = us.getUniversity();
+		return ResponseEntity.ok(universityMapper.toDTO(university));
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
@@ -45,12 +52,9 @@ public class UniversityController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<University> getUniversityById(@PathVariable Long id) {
-		Optional<University> university = us.getUniversity(id);
-		if(university.isPresent()) {
-			return new ResponseEntity<University>(university.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<University>(HttpStatus.NOT_FOUND);
+	public UniversityDTO  getUniversityById(@PathVariable Long id) {
+		University university = us.getUniversity(id).get();
+		return universityMapper.toDTO(university);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

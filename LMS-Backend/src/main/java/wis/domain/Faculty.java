@@ -28,6 +28,8 @@ public class Faculty {
 	
 	@Size(max = 50)
 	private String name;
+	@Size(max = 500)
+	private String description;
 	
 	@NotNull
 	private Boolean deleted = false;
@@ -121,6 +123,17 @@ public class Faculty {
 	public void setStudyProgram(Set<StudyProgram> studyProgram) {
 		this.studyProgram = studyProgram;
 	}
+	
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

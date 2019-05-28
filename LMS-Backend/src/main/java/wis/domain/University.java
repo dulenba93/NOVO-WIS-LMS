@@ -30,6 +30,10 @@ public class University {
 
 	@Size(max = 50)
 	private String name;
+	
+	@Size(max = 500)
+	private String description;
+
 
 	private Date yearOfEstablishment;
 	
@@ -58,6 +62,7 @@ public class University {
 		this.faculty = faculty;
 	}
 	
+	/////////////////////////////////////////////////////////////////////////////////
 	public Long getId() {
 		return id;
 	}
@@ -114,6 +119,22 @@ public class University {
 		this.faculty = faculty;
 	}
 
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Teacher getRektor() {
+		return rektor;
+	}
+
+	public void setRektor(Teacher rektor) {
+		this.rektor = rektor;
+	}
 
 	@Override
 	public boolean equals(Object o) {

@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import wis.domain.Address;
 import wis.domain.Place;
 import wis.dto.AddressDTO;
 import wis.mapper.AddressMapper;
 import wis.service.AddressService;
+import wis.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -36,7 +39,7 @@ public class AddressController {
 		List<Address> address = as.getAddress();
 		return ResponseEntity.ok(addressMapper.toDTO(address));
 	}
-	
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Address> addAddress(@RequestBody Address address) {
 		as.addAddress(address);

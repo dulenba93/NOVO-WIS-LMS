@@ -1,5 +1,6 @@
 package wis.web.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.Faculty;
+import wis.dto.FacultyDTO;
+import wis.mapper.FacultyMapper;
 import wis.service.FacultyService;
 import wis.utils.View.HideOptionalProperties;
-import wis.utils.View.ShowFaculty;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,10 +29,15 @@ public class FacultyController {
 	@Autowired
 	FacultyService fs;
 	
-	@JsonView(HideOptionalProperties.class)
+	
+	@Autowired
+	FacultyMapper facultyMapper;
+	
+	//@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<Faculty>> getAllFaculty() {
-		return new ResponseEntity<Iterable<Faculty>>(fs.getFaculty(), HttpStatus.OK);
+	public ResponseEntity<Iterable<FacultyDTO>> getAllFaculty() {
+		List<Faculty> faculty = fs.getFaculty();
+		return ResponseEntity.ok(facultyMapper.toDTO(faculty));
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
@@ -46,12 +53,9 @@ public class FacultyController {
 	}
 	//@JsonView(ShowFaculty.class)
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id) {
-		Optional<Faculty> faculty = fs.getFaculty(id);
-		if(faculty.isPresent()) {
-			return new ResponseEntity<Faculty>(faculty.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<Faculty>(HttpStatus.NOT_FOUND);
+	public FacultyDTO getFacultyById(@PathVariable Long id) {
+		Faculty faculty = fs.getFaculty(id).get();
+		return facultyMapper.toDTO(faculty);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

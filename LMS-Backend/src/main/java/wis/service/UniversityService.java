@@ -1,5 +1,6 @@
 package wis.service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -21,7 +22,7 @@ public class UniversityService {
 	public UniversityService() {
 	}
 
-	public Iterable<University> getUniversity() {
+	public List<University> getUniversity() {
 		return ur.findAll();
 	}
 
