@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import wis.domain.Student;
 import wis.service.AccountsService;
 import wis.service.AddressService;
 import wis.service.StudentService;
+import wis.service.StudentYearService;
 import wis.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -34,12 +36,16 @@ public class StudentController{
 	@Autowired
 	AccountsService acs;
 	
+	@Autowired
+	StudentYearService sys;
+	
 	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Student>> getAllStudents() {
 		return new ResponseEntity<Iterable<Student>>(ts.getAllStudents(), HttpStatus.OK);
 	}
 
+	@Transactional
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Student> addStudent(@RequestBody Student student) {
 		acs.addAccount(student.getAccount());
