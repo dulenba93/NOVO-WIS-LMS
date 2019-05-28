@@ -1,6 +1,8 @@
 package wis.service;
 
+import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ public class PlaceService {
 	
 	@Autowired
 	PlaceRepository pr;
+	
 	@Autowired
 	CountryRepository cr;
 	
@@ -21,12 +24,12 @@ public class PlaceService {
 	public PlaceService() {
 	}
 
-	public Iterable<Place> getPlace() {
+	public List<Place> getPlace() {
 		return pr.findAll();
 	}
 
-	public Optional<Place> getPlace(Long id) {
-		return pr.findById(id);
+	public Place getPlace(Long id) {
+		return pr.findById(id).orElse(null);
 	}
 
 	public void addPlace(Place place) {
@@ -48,4 +51,6 @@ public class PlaceService {
 			pr.save(place);
 		}
 	}
+	
+	
 }

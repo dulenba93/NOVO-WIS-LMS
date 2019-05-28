@@ -1,9 +1,8 @@
 package wis.web.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import wis.domain.Place;
+import wis.dto.PlaceDTO;
+import wis.mapper.PlaceMapper;
 import wis.service.PlaceService;
-import wis.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,9 +25,13 @@ public class PlaceController {
 	@Autowired
 	PlaceService ps;
 	
+	@Autowired
+	PlaceMapper pmpr;
+	
 	@RequestMapping()
-	public ResponseEntity<Iterable<Place>> getAllPlace() {
-		return new ResponseEntity<Iterable<Place>>(ps.getPlace(), HttpStatus.OK);
+	public ResponseEntity<Iterable<PlaceDTO>> getAllPlace() {
+		List<Place> places = ps.getPlace();
+		return ResponseEntity.ok(pmpr.toDTO(places));
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
@@ -45,12 +47,9 @@ public class PlaceController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Place> getPlaceById(@PathVariable Long id) {
-		Optional<Place> place = ps.getPlace(id);
-		if(place.isPresent()) {
-			return new ResponseEntity<Place>(place.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<Place>(HttpStatus.NOT_FOUND);
+	public PlaceDTO getPlaceById(@PathVariable Long id) {
+		Place place = ps.getPlace(id);
+		return pmpr.toDTO(place);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

@@ -4,15 +4,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import wis.domain.Country;
 import wis.domain.Place;
 import wis.dto.CountryDTO;
+import wis.service.PlaceService;
 
 @Component
 public class CountryMapper implements Mapper<Country, CountryDTO> {
-
+	
+	@Autowired
+	PlaceService ps;
+	
 	@Override
 	public CountryDTO toDTO(Country entity) {
 		if (entity == null) {
