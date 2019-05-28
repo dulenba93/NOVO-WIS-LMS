@@ -20,6 +20,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Teacher {
@@ -37,10 +39,12 @@ public class Teacher {
 	@Column(length=64, nullable = false)
 	private String email;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="accountId")
 	private Accounts account;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="addressId")
 	private Address address;

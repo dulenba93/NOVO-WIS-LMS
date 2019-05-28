@@ -11,13 +11,15 @@ import { TeacherPanelComponent } from './teacher-panel/teacher-panel.component';
 import { StudentPanelComponent } from './student-panel/student-panel.component';
 import { UniversityComponent} from './admin-panel/university/university/university.component';
 import { AddUniversityComponent} from './admin-panel/university/add-university/add-university.component';
+import { UserManagementComponent } from './user-management/user-management.component'
  
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LogInComponent, data: { animation: { value: 'LoginPage' }} },
   { path: 'home', component: HomeComponent, data: { animation: { value: 'HomePage' }} },
-  { path: 'register', component: RegisterComponent, data: { animation: { value: 'RegisterPage' }} },
+  { path: 'admin-panel/register', component: RegisterComponent, data: { animation: { value: 'RegisterPage' }} },
+  { path: 'admin-panel/user-management', component: UserManagementComponent, data: { animation: { value: 'UserManagementPage' }} },
   { path: 'materials', component: MaterialsPageComponent, data: { animation: { value: 'MaterialsPage' }} },
   { path: 'materials/subject/:id', component: MaterialDetailComponent, data: { animation: { value: 'MaterialDetailPage' }} },
   { path: 'faculties', component: FacultiesComponent, data: { animation: { value: 'FacultiesPage' }} },

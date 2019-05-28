@@ -23,6 +23,7 @@ import { StudentPanelComponent } from './student-panel/student-panel.component';
 import { UniversityComponent } from './admin-panel/university/university/university.component';
 import { AddUniversityComponent } from './admin-panel/university/add-university/add-university.component';
 import { AdministrativePanelComponent } from './administrative-panel/administrative-panel.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   exports: [
@@ -42,7 +43,8 @@ import { AdministrativePanelComponent } from './administrative-panel/administrat
     StudentPanelComponent,
     UniversityComponent,
     AddUniversityComponent,
-    AdministrativePanelComponent
+    AdministrativePanelComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,

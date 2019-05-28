@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Administration {
@@ -32,10 +34,12 @@ public class Administration {
 	@Column(length = 64)
 	private String personalIdentificationNumber;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="accountId")
 	private Accounts account;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="addressId")
 	private Address address;
