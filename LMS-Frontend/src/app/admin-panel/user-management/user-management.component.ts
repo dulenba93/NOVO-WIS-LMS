@@ -11,8 +11,8 @@ import { Administration } from '../../model/administration';
 })
 export class UserManagementComponent implements OnInit {
 
-  displayedColumns1: string[] = ['id','firstName','lastName', 'email', 'cardNumber'];
-  displayedColumns2: string[] = ['id', 'firstName', 'lastName', 'email', 'personalIdentificationNumber'];
+  displayedColumns1: string[] = ['id','firstName','lastName', 'email', 'cardNumber', 'details', 'update','delete'];
+  displayedColumns2: string[] = ['id', 'firstName', 'lastName', 'email', 'personalIdentificationNumber', 'details', 'update','delete'];
 
   students: Student[];
   teachers: Teacher[];

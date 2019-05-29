@@ -5,106 +5,187 @@
   <mat-card-content>
     <mat-tab-group>
       <mat-tab label="Students">
-        <table mat-table [dataSource]="students">
+        <mat-table #table [dataSource]="students">
 
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>#</th>
-            <td mat-cell *matCellDef="let student">{{student.id}}</td>
+            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+            <mat-cell *matCellDef="let student">{{student.id}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef>First Name</th>
-            <td mat-cell *matCellDef="let student">{{student.firstName}}</td>
+            <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let student">{{student.firstName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef>Last Name</th>
-            <td mat-cell *matCellDef="let student">{{student.lastName}}</td>
+            <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let student">{{student.lastName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let student">{{student.email}}</td>
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let student">{{student.email}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="cardNumber">
-            <th mat-header-cell *matHeaderCellDef>Index</th>
-            <td mat-cell *matCellDef="let student">{{student.cardNumber}}</td>
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Index</mat-header-cell>
+            <mat-cell *matCellDef="let student">{{student.cardNumber}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="details">
+            <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary">
+                <mat-icon class="mat-18">reorder</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="update">
+            <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent">
+                <mat-icon class="mat-18">system_update</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn">
+                <mat-icon class="mat-18">delete</mat-icon>
+              </button>
+            </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
 
           <mat-row *matRowDef="let row; columns: displayedColumns1"></mat-row>
 
-        </table>
+        </mat-table>
       </mat-tab>
       <mat-tab label="Teachers">
-        <table mat-table [dataSource]="teachers">
+        <mat-table #table [dataSource]="teachers">
 
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>#</th>
-            <td mat-cell *matCellDef="let teacher">{{teacher.id}}</td>
+            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+            <mat-cell *matCellDef="let teacher">{{teacher.id}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef>First Name</th>
-            <td mat-cell *matCellDef="let teacher">{{teacher.firstName}}</td>
+            <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let teacher">{{teacher.firstName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef>Last Name</th>
-            <td mat-cell *matCellDef="let teacher">{{teacher.lastName}}</td>
+            <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let teacher">{{teacher.lastName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let teacher">{{teacher.email}}</td>
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let teacher">{{teacher.email}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="personalIdentificationNumber">
-            <th mat-header-cell *matHeaderCellDef>Peronsal ID</th>
-            <td mat-cell *matCellDef="let teacher">{{teacher.personalIdentificationNumber}}</td>
+            <mat-header-cell *matHeaderCellDef>Peronsal ID</mat-header-cell>
+            <mat-cell *matCellDef="let teacher">{{teacher.personalIdentificationNumber}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="details">
+            <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary">
+                <mat-icon class="mat-18">reorder</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="update">
+            <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent">
+                <mat-icon class="mat-18">system_update</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn">
+                <mat-icon class="mat-18">delete</mat-icon>
+              </button>
+            </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
 
           <mat-row *matRowDef="let row; columns: displayedColumns2"></mat-row>
 
-        </table>
+        </mat-table>
       </mat-tab>
       <mat-tab label="Administrative">
-        <table mat-table [dataSource]="administrative">
+        <mat-table #table [dataSource]="administrative">
 
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>#</th>
-            <td mat-cell *matCellDef="let administration">{{administration.id}}</td>
+            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+            <mat-cell *matCellDef="let administration">{{administration.id}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef>First Name</th>
-            <td mat-cell *matCellDef="let administration">{{administration.firstName}}</td>
+            <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let administration">{{administration.firstName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef>Last Name</th>
-            <td mat-cell *matCellDef="let administration">{{administration.lastName}}</td>
+            <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+            <mat-cell *matCellDef="let administration">{{administration.lastName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let administration">{{administration.email}}</td>
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let administration">{{administration.email}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="personalIdentificationNumber">
-            <th mat-header-cell *matHeaderCellDef>Peronsal ID</th>
-            <td mat-cell *matCellDef="let administration">{{administration.personalIdentificationNumber}}</td>
+            <mat-header-cell *matHeaderCellDef>Peronsal ID</mat-header-cell>
+            <mat-cell *matCellDef="let administration">{{administration.personalIdentificationNumber}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="details">
+            <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary">
+                <mat-icon class="mat-18">reorder</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="update">
+            <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent">
+                <mat-icon class="mat-18">system_update</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn">
+                <mat-icon class="mat-18">delete</mat-icon>
+              </button>
+            </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
 
           <mat-row *matRowDef="let row; columns: displayedColumns2"></mat-row>
 
-        </table>
+        </mat-table>
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>
