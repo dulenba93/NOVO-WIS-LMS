@@ -8,3 +8,6 @@ LMS-Backend/target/classes/application.properties
 LMS-Backend/src/main/resources/application.properties
 LMS-Backend/target/classes/META-INF/maven/wis.lms/lms/pom.properties
 *.json
+LMS-Backend/target/classes/application.properties
+LMS-Backend/target/classes/application.properties
+LMS-Backend/src/test/java/application.properties

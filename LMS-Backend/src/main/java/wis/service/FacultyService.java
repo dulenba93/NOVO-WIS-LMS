@@ -31,6 +31,10 @@ public class FacultyService {
 	public Optional<Faculty> getFaculty(Long id) {
 		return fr.findById(id);
 	}
+	
+	public List<Faculty> getAllByUniversity(Long id){
+		return fr.findAllByUniversityId(id);
+	}
 
 	public void addFaculty(Faculty faculty) {
 		Optional<Address> address= ar.findById(faculty.getAddress().getId());

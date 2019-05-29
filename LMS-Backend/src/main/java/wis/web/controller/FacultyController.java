@@ -39,6 +39,11 @@ public class FacultyController {
 		List<Faculty> faculty = fs.getFaculty();
 		return ResponseEntity.ok(facultyMapper.toDTO(faculty));
 	}
+	@RequestMapping(value="/universityid", method=RequestMethod.GET)
+	public ResponseEntity<List<FacultyDTO>> getAllFacultyByUniversity(Long id) {
+		List<Faculty> faculty = fs.getAllByUniversity(id);
+		return ResponseEntity.ok(facultyMapper.toDTO(faculty));
+	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Faculty> addFaculty(@RequestBody Faculty faculty) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UniversityService } from 'src/app/services/university-service/university.service';
 import { University } from 'src/app/model/university';
+//import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-university',
@@ -12,6 +13,8 @@ import { University } from 'src/app/model/university';
 export class UniversityComponent implements OnInit {
 
   private university : University[];
+
+
 
   constructor(private universityService: UniversityService) { }
 
@@ -32,6 +35,11 @@ export class UniversityComponent implements OnInit {
     )
     console.log(this.university[0].name);
 
+  }
+
+  enterUniversity(selectedUniversity){
+
+  
   }
 
 }
