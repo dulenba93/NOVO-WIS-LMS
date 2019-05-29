@@ -17,4 +17,12 @@ export class UserManagementService {
   getAllStudents(): Observable<any>{
     return this.http.get(this.STUDENT_URL);
   }
+
+  getAllTeachers(): Observable<any>{
+    return this.http.get(this.TEACHER_URL);
+  }
+
+  getAllAdministrative(): Observable<any>{
+    return this.http.get(this.ADMINISTRATOR_URL);
+  }
 }

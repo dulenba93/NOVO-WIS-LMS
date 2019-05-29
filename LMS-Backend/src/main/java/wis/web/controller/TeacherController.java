@@ -1,6 +1,9 @@
 package wis.web.controller;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import wis.domain.Teacher;
+import wis.dto.TeacherDTO;
+import wis.mapper.TeacherMapper;
 import wis.service.AccountsService;
 import wis.service.AddressService;
 import wis.service.TeacherService;
@@ -34,12 +39,16 @@ public class TeacherController {
 	@Autowired
 	AccountsService acs;
 	
-	@JsonView(HideOptionalProperties.class)
+	@Autowired
+	TeacherMapper tmpr;
+	
 	@RequestMapping()
-	public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
-		return new ResponseEntity<Iterable<Teacher>>(ts.getTeacher(), HttpStatus.OK);
+	public ResponseEntity<Iterable<TeacherDTO>> getAllTeacher() {
+		List<Teacher> teachers = ts.getAllTeachers();
+		return ResponseEntity.ok(tmpr.toDTO(teachers));
 	}
 	
+	@Transactional
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Teacher> addTeacher(@RequestBody Teacher teacher) {
 		acs.addAccount(teacher.getAccount());
@@ -55,12 +64,9 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
-		Optional<Teacher> teacher = ts.getTeacher(id);
-		if(teacher.isPresent()) {
-			return new ResponseEntity<Teacher>(teacher.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<Teacher>(HttpStatus.NOT_FOUND);
+	public TeacherDTO getTeacherById(@PathVariable Long id) {
+		Teacher teacher = ts.getTeacher(id);
+		return tmpr.toDTO(teacher);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

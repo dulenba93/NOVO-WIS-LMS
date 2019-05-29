@@ -39,12 +39,10 @@ public class Teacher {
 	@Column(length=64, nullable = false)
 	private String email;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="accountId")
 	private Accounts account;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="addressId")
 	private Address address;

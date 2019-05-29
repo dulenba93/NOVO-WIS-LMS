@@ -1,6 +1,8 @@
 package wis.web.controller;
 
-import java.util.Optional;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,15 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import wis.domain.Administration;
-import wis.domain.Teacher;
+import wis.domain.Administrative;
+import wis.dto.AdministrativeDTO;
+import wis.mapper.AdministrativeMapper;
 import wis.service.AccountsService;
 import wis.service.AddressService;
 import wis.service.AdministrativeService;
-import wis.service.TeacherService;
-import wis.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -36,44 +35,45 @@ public class AdministrativeController {
 	@Autowired
 	AccountsService acs;
 	
-	@JsonView(HideOptionalProperties.class)
+	@Autowired
+	AdministrativeMapper admpr;
+	
 	@RequestMapping()
-	public ResponseEntity<Iterable<Administration>> getAllTeacher() {
-		return new ResponseEntity<Iterable<Administration>>(ads.getAdminstrations(), HttpStatus.OK);
+	public ResponseEntity<Iterable<AdministrativeDTO>> getAllTeacher() {
+		List<Administrative> administration = ads.getAdminstrations();
+		return ResponseEntity.ok(admpr.toDTO(administration));
 	}
 	
+	@Transactional
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<Administration> addAdministration(@RequestBody Administration administration) {
+	public ResponseEntity<Administrative> addAdministration(@RequestBody Administrative administration) {
 		acs.addAccount(administration.getAccount());
 		as.addAddress(administration.getAddress());
 		ads.addAdministration(administration);
-		return new ResponseEntity<Administration>(administration, HttpStatus.CREATED);
+		return new ResponseEntity<Administrative>(administration, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Administration> updateAdministration(@PathVariable Long id, @RequestBody Administration administration) {
+	public ResponseEntity<Administrative> updateAdministration(@PathVariable Long id, @RequestBody Administrative administration) {
 		ads.updateAdministration(id, administration);
-		return new ResponseEntity<Administration>(administration, HttpStatus.CREATED);
+		return new ResponseEntity<Administrative>(administration, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Administration> getAdministrationById(@PathVariable Long id) {
-		Optional<Administration> administration = ads.getAdminstration(id);
-		if(administration.isPresent()) {
-			return new ResponseEntity<Administration>(administration.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<Administration>(HttpStatus.NOT_FOUND);
+	public AdministrativeDTO getAdministrationById(@PathVariable Long id) {
+		Administrative administration = ads.getAdminstration(id);
+		return admpr.toDTO(administration);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Administration> removeAdministration(@PathVariable Long id) {
+	public ResponseEntity<Administrative> removeAdministration(@PathVariable Long id) {
 		try {
 			ads.deleteAdministration(id);
 		}catch (Exception e) {
-			return new ResponseEntity<Administration>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Administrative>(HttpStatus.NOT_FOUND);
 		}
 
-		return new ResponseEntity<Administration>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Administrative>(HttpStatus.NO_CONTENT);
 	}
 	
 }

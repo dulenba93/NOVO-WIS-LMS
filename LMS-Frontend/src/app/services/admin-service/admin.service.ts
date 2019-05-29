@@ -38,14 +38,6 @@ export class AdminService {
     return this.http.post(this.TEACHER_URL, teacher);
   }
 
-  getAllUsers(): Observable<any> {
-    return this.http.get(this.USER_URL);
-  }
-
-  // checkUser(user: User): Observable<any> {
-  //   return this.http.post(this.CHECK_USER_URL, user);
-  // }
-
   deleteUser(id: String) {
     return this.http.delete(this.USER_URL + `/${id}`);
   }

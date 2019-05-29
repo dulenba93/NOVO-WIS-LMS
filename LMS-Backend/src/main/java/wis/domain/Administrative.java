@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Where(clause = "deleted = 'false'")
-public class Administration {
+public class Administrative {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,15 +36,19 @@ public class Administration {
 	@Column(length = 64)
 	private String personalIdentificationNumber;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="accountId")
 	private Accounts account;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="addressId")
 	private Address address;
+	
+	@NotNull
+	private Boolean deleted = false;
+	
+	@Version
+	private int version = 0;
 	
 	public Long getId() {
 		return id;
@@ -102,5 +108,5 @@ public class Administration {
 		this.personalIdentificationNumber = personalIdentificationNumber;
 	}
 
-	public Administration() {}
+	public Administrative() {}
 }
