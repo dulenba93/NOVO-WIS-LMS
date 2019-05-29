@@ -38,7 +38,7 @@ public class UniversityController {
 		List<University> university = us.getUniversity();
 		return ResponseEntity.ok(universityMapper.toDTO(university));
 	}
-	
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<University> addUniversity(@RequestBody University university) {
 		us.addUniversity(university);

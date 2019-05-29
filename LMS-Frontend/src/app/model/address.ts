@@ -4,5 +4,5 @@ export class Address{
     id: number;
     street: String;
     number: String;
-    place: Place;
+    placeDto: Place = new Place();
 }
