@@ -9,7 +9,7 @@ import { Faculty } from '../../model/faculty';
 })
 export class FacultyService {
 
-  private facultyUrl = "http://localhost:3000/faculties/"
+  private facultyUrl = "http://localhost:8080/faculty"
 
   constructor(
     private http: HttpClient
@@ -17,5 +17,9 @@ export class FacultyService {
 
   getFaculties(): Observable<Faculty[]>{
     return this.http.get<Faculty[]>(this.facultyUrl);
+  }
+
+  addNewFaculty(faculty: Faculty): Observable<any>{
+    return this.http.post(this.facultyUrl,faculty)
   }
 }

@@ -33,7 +33,7 @@ export class UniversityService {
     return this.http.post(this.UNIVERSITY_URL, university);
   }
 
-  getAllUniversities(): Observable<any[]>{
+  getAllUniversities(): Observable<University[]>{
     return this.http.get<any[]>(this.UNIVERSITY_URL);
   }
 

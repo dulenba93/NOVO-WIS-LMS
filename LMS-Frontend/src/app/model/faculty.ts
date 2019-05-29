@@ -1,7 +1,11 @@
+import { University } from './university';
+import { Address } from './address';
+
 export class Faculty{
     id: number
-    img: String
+    description: String
     name: String
     dean: String
-    university: String
+    address: Address = new Address()
+    university: University = new University()
 }

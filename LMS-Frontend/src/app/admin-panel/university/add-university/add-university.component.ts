@@ -48,7 +48,7 @@ export class AddUniversityComponent implements OnInit {
             id: item.id,
             street: item.street,
             number: item.number,
-            place: item.place,
+            placeDto: item.placeDto,
             // country:item.country
           };
 
@@ -59,25 +59,24 @@ export class AddUniversityComponent implements OnInit {
   }
 
   //ovako se dohvata vrednost na promenu mat-select
-  setCityCountry($event: EventEmitter<MatSelectChange>){
-    /*
-    this.form.get("city").setValue($event.value.place.name);
-    this.form.get("country").setValue($event.value.place.country.name);
-    this.university.address.id = $event.value.id;
-    */
+  setCityCountry($event){
+    
+    this.form.get("city").setValue($event.placeDto.name);
+    this.form.get("country").setValue($event.placeDto.countryDto.name);
+    this.university.address.id = $event.id;
   }
 
 
-  // onSubmit($event: EventEmitter<MatSelectChange>){
-  //   this.university.name = this.form.get("name").value;
-  //   this.university.year = this.form.get("date").value;
+   onSubmit(){
+     this.university.name = this.form.get("name").value;
+     this.university.year = this.form.get("date").value;
+      
+    console.log( this.university)
+    this.universityService.addNewUniversity(this.university).subscribe();
+    this.openSnackBar("You have successfully added University", "Close");
+   //treba dodati notifikaciju i redirektovati
 
-  //   console.log( this.university)
-  //   this.universityService.addNewUniversity(this.university).subscribe();
-  //   this.openSnackBar("You have successfully added University", "Close");
-  //   //treba dodati notifikaciju i redirektovati
-
-  // }
+   }
 
 
   

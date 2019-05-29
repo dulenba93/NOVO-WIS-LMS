@@ -11,7 +11,9 @@ import { TeacherPanelComponent } from './teacher-panel/teacher-panel.component';
 import { StudentPanelComponent } from './student-panel/student-panel.component';
 import { UniversityComponent} from './admin-panel/university/university/university.component';
 import { AddUniversityComponent} from './admin-panel/university/add-university/add-university.component';
-import { UserManagementComponent } from './user-management/user-management.component'
+import { UserManagementComponent } from './user-management/user-management.component';
+import { AddFacultyComponent } from './faculties/add-faculty/add-faculty.component';
+
  
 
 const routes: Routes = [
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'teacher-panel', component: TeacherPanelComponent, data: { animation: { value: 'TeacherPanelPage' }} },
   { path: 'student-panel', component: StudentPanelComponent, data: { animation: { value: 'StudentPanelPage' }} },
   { path: 'admin-panel/university', component:UniversityComponent, data: {animation : {value:'UniversityPage'}}},
-  { path: 'admin-panel/university/add-university', component:AddUniversityComponent, data: {animation : {value:'AddUniversityPage'}}}
+  { path: 'admin-panel/university/add-university', component:AddUniversityComponent, data: {animation : {value:'AddUniversityPage'}}},
+  { path: 'admin-panel/university/add-faculty', component:AddFacultyComponent, data: {animation : {value:'AddFacultyPage'}}}
 ];
 
 @NgModule({
