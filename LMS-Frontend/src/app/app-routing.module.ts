@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LogInComponent } from './log-in/log-in.component';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './admin-panel/register/register.component';
 import { MaterialsPageComponent } from './materials-page/materials-page.component';
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { FacultiesComponent } from './faculties/faculties.component';

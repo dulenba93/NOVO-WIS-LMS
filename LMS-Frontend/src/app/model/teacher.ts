@@ -8,5 +8,5 @@ export class Teacher{
     account: Account
     email: String
     personalIdentificationNumber: String
-    address: Address;
+    address: Address
 }

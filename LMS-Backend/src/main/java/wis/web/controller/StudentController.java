@@ -46,9 +46,7 @@ public class StudentController{
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public ResponseEntity<Iterable<StudentDTO>> getAllStudents() {
-		System.out.println("anything");
 		List<Student> students = ts.getAllStudents();
-		System.out.println("drugo");
 		return ResponseEntity.ok(smpr.toDTO(students));
 	}
 

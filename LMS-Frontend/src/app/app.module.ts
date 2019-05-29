@@ -13,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { LogInComponent } from './log-in/log-in.component';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './admin-panel/register/register.component';
 import { MaterialsPageComponent } from './materials-page/materials-page.component';
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { FacultiesComponent } from './faculties/faculties.component';
@@ -25,6 +25,7 @@ import { AddUniversityComponent } from './admin-panel/university/add-university/
 import { AdministrativePanelComponent } from './administrative-panel/administrative-panel.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddFacultyComponent } from './faculties/add-faculty/add-faculty.component';
+
 
 @NgModule({
   exports: [

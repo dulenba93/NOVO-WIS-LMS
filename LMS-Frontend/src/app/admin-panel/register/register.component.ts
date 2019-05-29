@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms'
-import { AdminService } from '../services/admin-service/admin.service';
+import { AdminService } from '../../services/admin-service/admin.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material';
-import { Student } from '../model/student';
-import { PlaceService } from '../services/place-service/place.service';
-import { Teacher } from '../model/teacher';
-import { Place } from '../model/place';
-import { Administration } from '../model/administration';
-import { AddressService } from '../services/address-service/address.service';
-import { Address } from '../model/address';
+import { Student } from '../../model/student';
+import { PlaceService } from '../../services/place-service/place.service';
+import { Teacher } from '../../model/teacher';
+import { Place } from '../../model/place';
+import { Administration } from '../../model/administration';
+import { AddressService } from '../../services/address-service/address.service';
+import { Address } from '../../model/address';
 
 // export class RegistrationValidator {
 //   static validate(registrationFormGroup: FormGroup) {
