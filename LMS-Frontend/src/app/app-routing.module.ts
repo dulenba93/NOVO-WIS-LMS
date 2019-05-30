@@ -14,6 +14,8 @@ import { AddUniversityComponent} from './admin-panel/university/add-university/a
 import { UserManagementComponent } from './admin-panel/user-management/user-management.component';
 import { AddFacultyComponent } from './faculties/add-faculty/add-faculty.component';
 import { AddAddressComponent } from './admin-panel/add-address/add-address.component';
+import { StudyProgramComponent } from './faculties/study-program/study-program.component';
+import { AddStudyProgramComponent } from './faculties/study-program/add-study-program/add-study-program.component';
 
  
 
@@ -35,6 +37,9 @@ const routes: Routes = [
   { path: 'admin-panel/university/add-university', component:AddUniversityComponent, data: {animation : {value:'AddUniversityPage'}}},
   { path: 'admin-panel/university/add-faculty', component:AddFacultyComponent, data: {animation : {value:'AddFacultyPage'}}},
   { path: 'admin-panel/add-address', component: AddAddressComponent, data: { animation: { value: 'AddAddressPage' }} },
+  { path: 'study-program', component: StudyProgramComponent, data: { animation: { value: 'StudyProgramPage' }} },
+  { path: 'study-program/:facultyId', component: StudyProgramComponent, data: { animation: { value: 'StudyProgramPage' }} },
+  { path: 'study-program/:facultyId/add-study-program', component: AddStudyProgramComponent, data: { animation: { value: 'AddStudyProgramPage' }} }
 ];
 
 @NgModule({
