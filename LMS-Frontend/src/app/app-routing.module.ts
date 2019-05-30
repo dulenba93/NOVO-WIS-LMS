@@ -37,9 +37,9 @@ const routes: Routes = [
   { path: 'admin-panel/university/add-university', component:AddUniversityComponent, data: {animation : {value:'AddUniversityPage'}}},
   { path: 'admin-panel/university/add-faculty', component:AddFacultyComponent, data: {animation : {value:'AddFacultyPage'}}},
   { path: 'admin-panel/add-address', component: AddAddressComponent, data: { animation: { value: 'AddAddressPage' }} },
-  { path: 'study-program', component: StudyProgramComponent, data: { animation: { value: 'StudyProgramPage' }} },
-  { path: 'study-program/:facultyId', component: StudyProgramComponent, data: { animation: { value: 'StudyProgramPage' }} },
-  { path: 'study-program/:facultyId/add-study-program', component: AddStudyProgramComponent, data: { animation: { value: 'AddStudyProgramPage' }} }
+  { path: 'faculties/:universityId/study-program', component: StudyProgramComponent, data: { animation: { value: 'StudyProgramPage' }} },
+  { path: 'faculties/:universityId/study-program/:facultyId', component: StudyProgramComponent, data: { animation: { value: 'StudyProgramPage' }} },
+  { path: 'faculties/:universityId/study-program/:facultyId/add-study-program', component: AddStudyProgramComponent, data: { animation: { value: 'AddStudyProgramPage' }} }
 ];
 
 @NgModule({
