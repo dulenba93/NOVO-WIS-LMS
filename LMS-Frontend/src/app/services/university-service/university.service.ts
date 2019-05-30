@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Address } from 'src/app/model/address';
+import { Address, AddressDto } from 'src/app/model/address';
 import { University } from 'src/app/model/university';
 
 const httpOptions = {
@@ -23,8 +23,8 @@ export class UniversityService {
 
 
   
-  getAllAddress():Observable<Address[]>{
-    return this.http.get<Address[]>(this.ADDRESS_URL);
+  getAllAddress():Observable<AddressDto[]>{
+    return this.http.get<AddressDto[]>(this.ADDRESS_URL);
   }
 
   addNewUniversity(university: University): Observable<any>{

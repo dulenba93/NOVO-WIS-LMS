@@ -35,7 +35,9 @@
         <mat-form-field>
           <mat-select placeholder="Choose Faculty Address" [formControl]="address" [(ngModel)]="selectedOption" (selectionChange)="setCityCountry($event.value)">
             <mat-option *ngFor="let a of address;" [value]="a">{{a.street}}-broj:{{a.number}}</mat-option>
+            <a routerLink="/admin-panel/add-address">
             <mat-option value="option">Add New Address</mat-option>
+          </a>
           </mat-select>
         </mat-form-field>
       </p>

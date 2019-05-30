@@ -1,8 +1,15 @@
-import { Place } from './place';
+import { Place, PlaceDto } from './place';
 
 export class Address{
     id: number;
     street: String;
     number: String;
-    placeDto: Place = new Place();
+    place: Place = new Place();
+}
+
+export class AddressDto{
+    id: number;
+    street: String;
+    number: String;
+    placeDto: PlaceDto = new PlaceDto();
 }

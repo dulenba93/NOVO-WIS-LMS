@@ -2,10 +2,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { UniversityService } from 'src/app/services/university-service/university.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar, MatSelectChange } from '@angular/material';
-import { Address } from 'src/app/model/address';
 import { University } from 'src/app/model/university';
 import { FacultyService } from 'src/app/services/faculty-service/faculty.service';
 import { Faculty } from 'src/app/model/faculty';
+import { AddressDto } from 'src/app/model/address';
 
 @Component({
   selector: 'app-add-faculty',
@@ -15,7 +15,7 @@ import { Faculty } from 'src/app/model/faculty';
 export class AddFacultyComponent implements OnInit {
 
   form : FormGroup;
-  address: Address[];
+  address: AddressDto[];
   university: University[];
   faculty: Faculty = new Faculty();
 

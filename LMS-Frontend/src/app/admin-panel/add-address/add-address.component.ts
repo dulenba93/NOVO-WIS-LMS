@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material';
 import { Place } from 'src/app/model/place';
 import { Capability } from 'protractor';
 import { Address } from 'src/app/model/address';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-address',
@@ -25,7 +26,8 @@ export class AddAddressComponent implements OnInit {
   
   constructor( private addressService : AddressService,
     private fb:FormBuilder,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private location: Location) {
 
      this.form = fb.group({
        'street': [null],
@@ -59,18 +61,25 @@ this.filteredCity = this.form.valueChanges
   onSubmit(){
     this.address.street = this.form.get("street").value;
     this.address.number = this.form.get("number").value;
-    this.address.placeDto.name = this.form.get("place").value;
-    this.address.placeDto.countryDto.name = this.form.get("country").value;
+    this.address.place.name = this.form.get("place").value;
+    this.address.place.country.name = this.form.get("country").value;
 
     //console.log(this.address);
     this.addressService.addNewAddress(this.address).subscribe();
     this.openSnackBar("You have successfully added new address", "Close");
+    this.goBack();
   }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000,
     });
+  }
+
+
+  
+  goBack() {
+    this.location.back();
   }
 /*
   private _filter(value: String): String[] {
