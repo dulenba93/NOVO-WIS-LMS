@@ -13,6 +13,7 @@ import { UniversityComponent} from './admin-panel/university/university/universi
 import { AddUniversityComponent} from './admin-panel/university/add-university/add-university.component';
 import { UserManagementComponent } from './admin-panel/user-management/user-management.component';
 import { AddFacultyComponent } from './faculties/add-faculty/add-faculty.component';
+import { AddAddressComponent } from './admin-panel/add-address/add-address.component';
 
  
 
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'student-panel', component: StudentPanelComponent, data: { animation: { value: 'StudentPanelPage' }} },
   { path: 'admin-panel/university', component:UniversityComponent, data: {animation : {value:'UniversityPage'}}},
   { path: 'admin-panel/university/add-university', component:AddUniversityComponent, data: {animation : {value:'AddUniversityPage'}}},
-  { path: 'admin-panel/university/add-faculty', component:AddFacultyComponent, data: {animation : {value:'AddFacultyPage'}}}
+  { path: 'admin-panel/university/add-faculty', component:AddFacultyComponent, data: {animation : {value:'AddFacultyPage'}}},
+  { path: 'admin-panel/add-address', component: AddAddressComponent, data: { animation: { value: 'AddAddressPage' }} },
 ];
 
 @NgModule({

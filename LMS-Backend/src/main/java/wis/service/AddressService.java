@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import wis.domain.Address;
+import wis.domain.Country;
 import wis.domain.Place;
 import wis.repository.AddressRepository;
+import wis.repository.CountryRepository;
 import wis.repository.PlaceRepository;
 
 @Service
@@ -16,6 +18,13 @@ public class AddressService {
 	AddressRepository ar;
 	@Autowired
 	PlaceRepository pr; 
+	@Autowired
+	CountryRepository cr;
+	@Autowired
+	PlaceService placeService; 
+	@Autowired
+	CountryService countryService;
+	
 
 	public AddressService() {
 	}
@@ -29,9 +38,27 @@ public class AddressService {
 	}
 
 	public void addAddress(Address address) {
-		Place place = pr.findByName(address.getPlace().getName());
-		address.setPlace(place);
-		ar.save(address);
+		Optional<Country> country = cr.findByName(address.getPlace().getCountry().getName());
+		Optional<Place> place = pr.findByName(address.getPlace().getName());
+		
+		if(place.isPresent()) {
+			address.setPlace(place.get());
+			ar.save(address);
+		}else {
+			if(country.isPresent()) {
+				placeService.addPlace(address.getPlace());
+				Optional<Place> p = pr.findByName(address.getPlace().getName());
+				address.setPlace(p.get());
+				ar.save(address);
+				
+			}else {
+				countryService.addCountry(address.getPlace().getCountry());
+				placeService.addPlace(address.getPlace());
+				Optional<Place> p = pr.findByName(address.getPlace().getName());
+				address.setPlace(p.get());
+				ar.save(address);
+			}
+		}
 	}
 
 	public void deleteAddress(Long id) {

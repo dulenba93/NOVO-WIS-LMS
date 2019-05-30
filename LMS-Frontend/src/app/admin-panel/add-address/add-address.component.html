@@ -1,0 +1,48 @@
+<mat-card class="home-content">
+    <mat-card-header>
+      <mat-card-title class="forum-container-title">Add new Address</mat-card-title>
+    </mat-card-header>
+  
+  
+    <form [formGroup]="form">
+      <p>
+        
+        <mat-form-field appearance="legacy">
+          <mat-label>Street Name</mat-label>
+          <input matInput placeholder="Enter name" formControlName="street" [(ngModel)]="street" >
+        </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Street Number</mat-label>
+            <input matInput placeholder="Enter name" formControlName="number" [(ngModel)]="number" >
+          </mat-form-field>
+        </p>
+
+         
+      <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Enter name" formControlName="place" [(ngModel)]="place" >
+          </mat-form-field>
+        </p>
+
+  
+
+  
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Country</mat-label>
+          <input matInput placeholder="Enter name" formControlName="country" [(ngModel)]="country" >
+        </mat-form-field>
+      </p>
+  
+  
+      <mat-card-actions class="login-btn-cotainer">
+        <button mat-raised-button (click)="onSubmit()" color="primary" class="login-btn">Add New Address</button>
+      </mat-card-actions>
+  
+    </form>
+  
+  
+  </mat-card>

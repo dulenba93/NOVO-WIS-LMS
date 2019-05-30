@@ -34,8 +34,8 @@ public class PlaceService {
 
 	public void addPlace(Place place) {
 		//treba voditi racuna kada se pokusa sa dodavanjem zemlje koja nije uneta u sistem
-		Country country = cr.findByName(place.getCountry().getName());
-		place.setCountry(country);
+		Optional<Country> country = cr.findByName(place.getCountry().getName());
+		place.setCountry(country.get());
 		pr.save(place);
 	}
 

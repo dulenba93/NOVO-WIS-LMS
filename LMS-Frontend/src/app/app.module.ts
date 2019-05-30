@@ -25,6 +25,7 @@ import { AddUniversityComponent } from './admin-panel/university/add-university/
 import { AdministrativePanelComponent } from './administrative-panel/administrative-panel.component';
 import { UserManagementComponent } from './admin-panel/user-management/user-management.component';
 import { AddFacultyComponent } from './faculties/add-faculty/add-faculty.component';
+import { AddAddressComponent } from './admin-panel/add-address/add-address.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AddFacultyComponent } from './faculties/add-faculty/add-faculty.compone
     AddUniversityComponent,
     AdministrativePanelComponent,
     UserManagementComponent,
-    AddFacultyComponent
+    AddFacultyComponent,
+    AddAddressComponent
   ],
   imports: [
     BrowserModule,
