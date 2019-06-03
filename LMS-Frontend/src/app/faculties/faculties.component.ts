@@ -29,6 +29,8 @@ export class FacultiesComponent implements OnInit {
    
     this.route.paramMap.subscribe(
       params =>{
+
+        // ovo + znaci kastovanje broj
         let id = +params.get('universityId');
        this.getFacultiesByUniversityId(id);
 

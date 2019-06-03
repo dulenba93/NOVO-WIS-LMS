@@ -1,3 +1,53 @@
-<p>
-  add-study-program works!
-</p>
+<mat-card class="home-content">
+    <mat-card-header>
+      <mat-card-title class="forum-container-title">Add new Study Program</mat-card-title>
+    </mat-card-header>
+  
+  
+    <form [formGroup]="form">
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Study Program Name</mat-label>
+          <input matInput placeholder="Enter name" formControlName="name">
+        </mat-form-field>
+      </p>
+
+      <p>
+          <mat-form-field >
+              <mat-label>Study Program Description</mat-label>
+              <textarea matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                        formControlName="description"></textarea>
+            </mat-form-field>
+      </p>
+
+  
+      <p>
+        <mat-form-field>
+          <mat-select placeholder="Choose Faculty " [formControl]="faculty" [(ngModel)]="selectedOption"    [(value)]="selectedFaculty">
+            <mat-option *ngFor="let f of faculty;" [value]="f.id">{{f.name}}-{{f.university.name}}</mat-option>
+            <a routerLink="/admin-panel/university/add-faculty">
+            <mat-option value="option">Add New Faculty</mat-option>
+          </a>
+          </mat-select>
+        </mat-form-field>
+      </p>
+  
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Study Program Manager</mat-label>
+          <input matInput placeholder="Enter name" formControlName="manager" [(ngModel)]="rektor">
+        </mat-form-field>
+      </p>
+  
+      <mat-card-actions class="login-btn-cotainer">
+        <button mat-raised-button (click)="onSubmit(selectedFaculty)" color="primary" class="login-btn">Add Study Program</button>
+      </mat-card-actions>
+  
+    </form>
+  
+  
+  </mat-card>

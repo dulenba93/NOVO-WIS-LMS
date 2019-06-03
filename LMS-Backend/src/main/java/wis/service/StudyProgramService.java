@@ -1,21 +1,28 @@
 package wis.service;
 
+import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import wis.domain.Faculty;
 import wis.domain.StudyProgram;
+import wis.repository.FacultyRepository;
 import wis.repository.StudyProgramRepository;
 
 @Service
 public class StudyProgramService {
 	@Autowired
 	StudyProgramRepository sr;
+	
+	@Autowired
+	FacultyRepository fr;
 
 	public StudyProgramService() {
 	}
 
-	public Iterable<StudyProgram> getStudyProgram() {
+	public List<StudyProgram> getStudyProgram() {
 		return sr.findAll();
 	}
 
@@ -24,7 +31,16 @@ public class StudyProgramService {
 	}
 
 	public void addStudyProgram(StudyProgram studyprogram) {
-		sr.save(studyprogram);
+		Optional<Faculty> faculty = fr.findById(studyprogram.getFaculty().getId());
+		if (faculty.isPresent()) {
+			studyprogram.setFaculty(faculty.get());
+			sr.save(studyprogram);			
+		}
+
+	}
+	
+	public List<StudyProgram> getAllByFacultyId(Long facultyId){
+		return sr.findAllByFacultyId(facultyId);
 	}
 
 	public void deleteStudyProgram(Long id) {

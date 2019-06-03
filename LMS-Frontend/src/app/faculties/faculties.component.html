@@ -19,7 +19,9 @@
         </div>
 
         <mat-card-actions>
-            <button mat-button>ENTER FACULTY</button>{{universityId}}
+            <a [routerLink]= "['/faculties/university/study-program',faculty.id]">   
+              <button mat-button >ENTER FACULTY</button>
+              </a>
           </mat-card-actions>
 
       

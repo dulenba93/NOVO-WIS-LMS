@@ -10,5 +10,7 @@ import wis.domain.Faculty;
 public interface FacultyRepository extends JpaRepository<Faculty, Long>{
 	
 	List<Faculty> findAllByUniversityId(long universityId);
+	
+	Faculty findByName(String name);
 
 }

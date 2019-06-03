@@ -30,6 +30,11 @@ public class StudyProgram {
 	@Size(max = 50)
 	private String name;
 	
+
+	@Size(max = 500)
+	private String description;
+	
+	
 	@NotNull
 	private Boolean deleted = false;
 	
@@ -92,6 +97,32 @@ public class StudyProgram {
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Teacher getRukovodilac() {
+		return rukovodilac;
+	}
+
+	public void setRukovodilac(Teacher rukovodilac) {
+		this.rukovodilac = rukovodilac;
+	}
+
+	public Set<YearOfStudy> getYearOfStudy() {
+		return yearOfStudy;
+	}
+
+	public void setYearOfStudy(Set<YearOfStudy> yearOfStudy) {
+		this.yearOfStudy = yearOfStudy;
+	}
+
 
 	@Override
 	public boolean equals(Object o) {

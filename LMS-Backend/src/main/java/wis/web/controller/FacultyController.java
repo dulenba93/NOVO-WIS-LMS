@@ -45,6 +45,7 @@ public class FacultyController {
 		return ResponseEntity.ok(facultyMapper.toDTO(faculty));
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<Faculty> addFaculty(@RequestBody Faculty faculty) {
 		fs.addFaculty(faculty);
